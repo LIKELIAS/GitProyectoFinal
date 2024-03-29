@@ -1,12 +1,10 @@
 package Login;
 
-import java.io.BufferedReader;
+import Desplegables.VentanaInicio;
+import ManejoArchivos.Archivos;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class LoginUsuario extends javax.swing.JFrame {
@@ -17,6 +15,7 @@ public class LoginUsuario extends javax.swing.JFrame {
     public LoginUsuario() {
         initComponents();
     }
+    private int lvl;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,6 +37,11 @@ public class LoginUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                windowadmin(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(142, 205, 221));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -110,33 +114,71 @@ public class LoginUsuario extends javax.swing.JFrame {
         else if(password.isEmpty()){
             JOptionPane.showMessageDialog(null, "Debe ingresar la contraseña");
         }
-        File f = new File("D:\\DB\\AdminUsuario.txt");
-        boolean encontrado1 = false;
-        boolean encontrado2 = false;
-        
-        try {        
-            if(f.exists()){
-                Scanner s = new Scanner(f);
-                BufferedReader br = new BufferedReader(new FileReader("D:\\DB\\AdminUsuario.txt"));
-                while(s.hasNextLine()){
-                    s.useDelimiter("\\s*;\\s*");
-                    if(usuario.equals(s.nextLine())){
-                        encontrado1=true;
-                    }
-                    if(password.equals(s.nextLine())){
-                        encontrado2=true;
-                    }
-                    if((encontrado1=true) && (encontrado2=true)){
-                        AdminPanel AdmP = new AdminPanel();
-                        AdmP.setVisible(true);
+        boolean encontrado = false;
+                
+        try {
+            File f = new File("D:\\DB\\Usuario.txt");
+            if(!f.exists()){
+                f.createNewFile();
+            }
+            else {
+                Scanner a = new Scanner(f);
+                while(a.hasNextLine() && !encontrado){
+                    String linea = a.nextLine();
+                    Scanner a1 = new Scanner(linea);
+                    
+                    a1.useDelimiter("\\s*;\\s*");
+                    
+                    String Log = a1.next();
+                    String Pass = a1.next();
+                    
+                    if(Log.equals(txtusuario.getText()) && Pass.equals(txtpassword.getText())){
+                     lvl=Integer.parseInt(a1.next());
+                     String name = a1.next();
+                     VentanaInicio ve = new VentanaInicio();                        
+                        if(lvl==1){
+                            ve.menProcesos.setEnabled(false);
+                            ve.menMantenimientos.setEnabled(false);                            
+                        }
+                        ve.lblLetrero.setText("Bienvenido " + name);
+                        ve.setVisible(true);
+                        encontrado = true;
+                        this.dispose();
+                    
+                    }else{
+                        encontrado = false;
+                        if(Log.equals(txtusuario.getText())){
+                            JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                            txtpassword.setText("");
+                            return;
+                        }
+                        else if(!a.hasNextLine()){
+                            JOptionPane.showMessageDialog(null, "Uusario no encontrado");
+                            txtusuario.setText("");
+                            txtpassword.setText("");
+                        }
                     }
                 }
-            }           
-        } catch (FileNotFoundException ex) {
+                a.close();
+            }
+        }
+        catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
         
     }//GEN-LAST:event_ingresarBtActionPerformed
+
+    private void windowadmin(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_windowadmin
+        Archivos ar = new Archivos();
+        File archivosDBase = new File("D:\\DB");
+        if(!archivosDBase.exists()){
+            archivosDBase.mkdir();
+            
+            String Administrador = "Admin;4321;0;Rochy;Wawawa";
+            File uf = new File("D:\\DB\\Usuario.txt");
+            ar.Guardar(Administrador, uf);
+        }
+    }//GEN-LAST:event_windowadmin
 
     /**
      * @param args the command line arguments
