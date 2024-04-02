@@ -29,16 +29,26 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblLetrero = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
+        menMantenimientos = new javax.swing.JMenu();
+        itmUsuario = new javax.swing.JMenuItem();
+        itmDepart = new javax.swing.JMenuItem();
+        itmPuesto = new javax.swing.JMenuItem();
+        itmEmpleado = new javax.swing.JMenuItem();
         menProcesos = new javax.swing.JMenu();
+        generarnomina = new javax.swing.JMenuItem();
+        reversarnomina = new javax.swing.JMenuItem();
+        consulta = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        menMantenimientos = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -48,10 +58,10 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(lblLetrero, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(232, Short.MAX_VALUE)
+                .addComponent(lblLetrero, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(112, 112, 112))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,31 +71,79 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addContainerGap(124, Short.MAX_VALUE))
         );
 
-        menProcesos.setText("Procesos");
-
-        jMenuItem1.setText("jMenuItem1");
-        menProcesos.add(jMenuItem1);
-
-        jMenuItem2.setText("jMenuItem2");
-        menProcesos.add(jMenuItem2);
-
-        jMenuItem3.setText("jMenuItem3");
-        menProcesos.add(jMenuItem3);
-
         menMantenimientos.setText("Mantenimientos");
 
-        jMenuItem4.setText("jMenuItem4");
-        menMantenimientos.add(jMenuItem4);
+        itmUsuario.setText("Usuarios");
+        itmUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmUsuarioActionPerformed(evt);
+            }
+        });
+        menMantenimientos.add(itmUsuario);
 
-        jMenuItem5.setText("jMenuItem5");
-        menMantenimientos.add(jMenuItem5);
+        itmDepart.setText("Departamentos");
+        itmDepart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmDepartActionPerformed(evt);
+            }
+        });
+        menMantenimientos.add(itmDepart);
 
-        menProcesos.add(menMantenimientos);
+        itmPuesto.setText("Puestos");
+        itmPuesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmPuestoActionPerformed(evt);
+            }
+        });
+        menMantenimientos.add(itmPuesto);
+
+        itmEmpleado.setText("Empleados");
+        itmEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmEmpleadoActionPerformed(evt);
+            }
+        });
+        menMantenimientos.add(itmEmpleado);
+
+        jMenuBar1.add(menMantenimientos);
+
+        menProcesos.setText("Procesos");
+
+        generarnomina.setText("Generar Nómina");
+        menProcesos.add(generarnomina);
+
+        reversarnomina.setText("Reversar Nómina");
+        menProcesos.add(reversarnomina);
 
         jMenuBar1.add(menProcesos);
 
-        jMenu2.setText("Consultas");
-        jMenuBar1.add(jMenu2);
+        consulta.setText("Consultas");
+
+        jMenuItem1.setText("De Departamento");
+        consulta.add(jMenuItem1);
+
+        jMenuItem2.setText("De Puestos");
+        consulta.add(jMenuItem2);
+
+        jMenuItem3.setText("De Empleados");
+        consulta.add(jMenuItem3);
+
+        jMenuItem4.setText("De Empleados por Departamento");
+        consulta.add(jMenuItem4);
+
+        jMenuItem5.setText("De Empleados por Puestos");
+        consulta.add(jMenuItem5);
+
+        jMenuItem6.setText("De Empleados por Fecha de Ingreso");
+        consulta.add(jMenuItem6);
+
+        jMenuItem7.setText("De Nómina por Fecha");
+        consulta.add(jMenuItem7);
+
+        jMenuItem8.setText("De Nómona por ID_Empleado");
+        consulta.add(jMenuItem8);
+
+        jMenuBar1.add(consulta);
 
         setJMenuBar(jMenuBar1);
 
@@ -101,7 +159,28 @@ public class VentanaInicio extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void itmUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmUsuarioActionPerformed
+        Usuarios us = new Usuarios();
+        us.setVisible(true);
+    }//GEN-LAST:event_itmUsuarioActionPerformed
+
+    private void itmEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEmpleadoActionPerformed
+        Empleados emp = new Empleados();
+        emp.setVisible(true);
+    }//GEN-LAST:event_itmEmpleadoActionPerformed
+
+    private void itmDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmDepartActionPerformed
+        Departamento dep = new Departamento();
+        dep.setVisible(true);
+    }//GEN-LAST:event_itmDepartActionPerformed
+
+    private void itmPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmPuestoActionPerformed
+        Puestos pu = new Puestos();
+        pu.setVisible(true);
+    }//GEN-LAST:event_itmPuestoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,16 +218,25 @@ public class VentanaInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu consulta;
+    private javax.swing.JMenuItem generarnomina;
+    private javax.swing.JMenuItem itmDepart;
+    private javax.swing.JMenuItem itmEmpleado;
+    private javax.swing.JMenuItem itmPuesto;
+    private javax.swing.JMenuItem itmUsuario;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JLabel lblLetrero;
     public javax.swing.JMenu menMantenimientos;
     public javax.swing.JMenu menProcesos;
+    private javax.swing.JMenuItem reversarnomina;
     // End of variables declaration//GEN-END:variables
 }

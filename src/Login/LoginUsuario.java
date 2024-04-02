@@ -1,7 +1,7 @@
 package Login;
 
-import Desplegables.VentanaInicio;
 import ManejoArchivos.Archivos;
+import Desplegables.VentanaInicio;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -68,7 +68,21 @@ public class LoginUsuario extends javax.swing.JFrame {
         etqPassword.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         etqPassword.setText("Contraseña");
         jPanel3.add(etqPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
+
+        txtusuario.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        txtusuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtusuarioActionPerformed(evt);
+            }
+        });
         jPanel3.add(txtusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 170, -1));
+
+        txtpassword.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        txtpassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpasswordActionPerformed(evt);
+            }
+        });
         jPanel3.add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 150, -1));
 
         ingresarBt.setBackground(new java.awt.Color(0, 102, 204));
@@ -174,11 +188,19 @@ public class LoginUsuario extends javax.swing.JFrame {
         if(!archivosDBase.exists()){
             archivosDBase.mkdir();
             
-            String Administrador = "Admin;4321;0;Rochy;Wawawa";
+            String Administrador = "Admin;4321;1;Provisional;Provisional";
             File uf = new File("D:\\DB\\Usuario.txt");
             ar.Guardar(Administrador, uf);
         }
     }//GEN-LAST:event_windowadmin
+
+    private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
+        txtpassword.grabFocus();
+    }//GEN-LAST:event_txtusuarioActionPerformed
+
+    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
+        ingresarBt.grabFocus();
+    }//GEN-LAST:event_txtpasswordActionPerformed
 
     /**
      * @param args the command line arguments

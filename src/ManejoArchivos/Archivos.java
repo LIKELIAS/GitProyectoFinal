@@ -5,15 +5,16 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import java.io.*;
 
 public class Archivos {
-    public static void Guardar(String cadena, File f){
+    public void Guardar(String cadena, File archivo){
         try{            
-            if(!f.exists()){
-                f.createNewFile();
+            if(!archivo.exists()){
+                archivo.createNewFile();
                 JOptionPane.showMessageDialog(null, "El archivo no existe y sera creado");
             }
-            BufferedWriter w = new BufferedWriter(new FileWriter(f, true));
+            BufferedWriter w = new BufferedWriter(new FileWriter(archivo, true));
             w.write(cadena + "\r\n");
             w.close();
         }

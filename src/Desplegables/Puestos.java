@@ -1,13 +1,11 @@
-package Departamentos;
+package Desplegables;
 
-import javax.swing.event.HyperlinkEvent;
-
-public class Departamento extends javax.swing.JFrame {
+public class Puestos extends javax.swing.JFrame {
 
     /**
      * Creates new form Departamento
      */
-    public Departamento() {
+    public Puestos() {
         initComponents();
     }
 
@@ -21,34 +19,35 @@ public class Departamento extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        etqID_depart = new javax.swing.JLabel();
-        txtID_depart = new javax.swing.JTextField();
-        txtDepart = new javax.swing.JTextField();
-        etqDepart = new javax.swing.JLabel();
+        idpuestolbl = new javax.swing.JLabel();
+        txtID_puesto = new javax.swing.JTextField();
+        txtpuesto = new javax.swing.JTextField();
+        puestolbl = new javax.swing.JLabel();
         etqEstado = new javax.swing.JLabel();
         btLimpiar = new javax.swing.JButton();
         btGuardar = new javax.swing.JButton();
         btSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Puestos");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(142, 205, 221));
 
-        etqID_depart.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        etqID_depart.setText("ID Departamento");
+        idpuestolbl.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        idpuestolbl.setText("ID Puestos");
 
-        txtID_depart.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        txtID_depart.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtID_puesto.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        txtID_puesto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtID_departKeyPressed(evt);
+                txtID_puestoKeyPressed(evt);
             }
         });
 
-        txtDepart.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        txtpuesto.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
 
-        etqDepart.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        etqDepart.setText("Departamento");
+        puestolbl.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        puestolbl.setText("Puestos");
 
         etqEstado.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         etqEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -99,17 +98,17 @@ public class Departamento extends javax.swing.JFrame {
                         .addGap(61, 61, 61))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etqDepart)
-                            .addComponent(etqID_depart))
+                            .addComponent(puestolbl)
+                            .addComponent(idpuestolbl))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtID_depart, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtID_puesto, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(etqEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(23, 23, 23))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -118,13 +117,13 @@ public class Departamento extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(etqID_depart)
-                        .addComponent(txtID_depart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(idpuestolbl)
+                        .addComponent(txtID_puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(etqEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etqDepart)
-                    .addComponent(txtDepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(puestolbl)
+                    .addComponent(txtpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btGuardar)
@@ -153,9 +152,9 @@ public class Departamento extends javax.swing.JFrame {
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
-        txtID_depart.setText("");
+        txtID_puesto.setText("");
         btSalir.enable(false);
-        txtDepart.setText("");
+        txtpuesto.setText("");
         btGuardar.enable(false);
         etqEstado.setText("");
     }//GEN-LAST:event_btLimpiarActionPerformed
@@ -164,9 +163,9 @@ public class Departamento extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btGuardarActionPerformed
 
-    private void txtID_departKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtID_departKeyPressed
+    private void txtID_puestoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtID_puestoKeyPressed
         
-    }//GEN-LAST:event_txtID_departKeyPressed
+    }//GEN-LAST:event_txtID_puestoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -185,20 +184,21 @@ public class Departamento extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Departamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Puestos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Departamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Puestos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Departamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Puestos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Departamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Puestos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Departamento().setVisible(true);
+                new Puestos().setVisible(true);
             }
         });
     }
@@ -207,11 +207,11 @@ public class Departamento extends javax.swing.JFrame {
     private javax.swing.JButton btGuardar;
     private javax.swing.JButton btLimpiar;
     private javax.swing.JButton btSalir;
-    private javax.swing.JLabel etqDepart;
     private javax.swing.JLabel etqEstado;
-    private javax.swing.JLabel etqID_depart;
+    private javax.swing.JLabel idpuestolbl;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtDepart;
-    private javax.swing.JTextField txtID_depart;
+    private javax.swing.JLabel puestolbl;
+    private javax.swing.JTextField txtID_puesto;
+    private javax.swing.JTextField txtpuesto;
     // End of variables declaration//GEN-END:variables
 }
