@@ -119,28 +119,28 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         consulta.setText("Consultas");
 
-        jMenuItem1.setText("De Departamento");
+        jMenuItem1.setText("Departamentos");
         consulta.add(jMenuItem1);
 
-        jMenuItem2.setText("De Puestos");
+        jMenuItem2.setText("Puestos");
         consulta.add(jMenuItem2);
 
-        jMenuItem3.setText("De Empleados");
+        jMenuItem3.setText("Empleados");
         consulta.add(jMenuItem3);
 
-        jMenuItem4.setText("De Empleados por Departamento");
+        jMenuItem4.setText("Empleados por Departamento");
         consulta.add(jMenuItem4);
 
-        jMenuItem5.setText("De Empleados por Puestos");
+        jMenuItem5.setText("Empleados por Puestos");
         consulta.add(jMenuItem5);
 
-        jMenuItem6.setText("De Empleados por Fecha de Ingreso");
+        jMenuItem6.setText("Empleados por Fecha de Ingreso");
         consulta.add(jMenuItem6);
 
-        jMenuItem7.setText("De Nómina por Fecha");
+        jMenuItem7.setText("Nómina por Fecha");
         consulta.add(jMenuItem7);
 
-        jMenuItem8.setText("De Nómona por ID_Empleado");
+        jMenuItem8.setText("Nómona por ID_Empleado");
         consulta.add(jMenuItem8);
 
         jMenuBar1.add(consulta);

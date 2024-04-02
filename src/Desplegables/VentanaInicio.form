@@ -73,42 +73,42 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="De Departamento"/>
+                <Property name="text" type="java.lang.String" value="Departamentos"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="De Puestos"/>
+                <Property name="text" type="java.lang.String" value="Puestos"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="De Empleados"/>
+                <Property name="text" type="java.lang.String" value="Empleados"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="De Empleados por Departamento"/>
+                <Property name="text" type="java.lang.String" value="Empleados por Departamento"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="De Empleados por Puestos"/>
+                <Property name="text" type="java.lang.String" value="Empleados por Puestos"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="De Empleados por Fecha de Ingreso"/>
+                <Property name="text" type="java.lang.String" value="Empleados por Fecha de Ingreso"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="De N&#xf3;mina por Fecha"/>
+                <Property name="text" type="java.lang.String" value="N&#xf3;mina por Fecha"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
               <Properties>
-                <Property name="text" type="java.lang.String" value="De N&#xf3;mona por ID_Empleado"/>
+                <Property name="text" type="java.lang.String" value="N&#xf3;mona por ID_Empleado"/>
               </Properties>
             </MenuItem>
           </SubComponents>
