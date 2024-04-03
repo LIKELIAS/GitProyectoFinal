@@ -102,26 +102,41 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Empleados por Departamento"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmpDepartActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="EmpPuestos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Empleados por Puestos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmpPuestosActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="EmpFecha">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Empleados por Fecha de Ingreso"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmpFechaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="NominaFecha">
               <Properties>
                 <Property name="text" type="java.lang.String" value="N&#xf3;mina por Fecha"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NominaFechaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="NominaIDEmp">
               <Properties>
                 <Property name="text" type="java.lang.String" value="N&#xf3;mona por ID_Empleado"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NominaIDEmpActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

@@ -2,6 +2,11 @@ package Desplegables;
 
 import Consultas.ConsultaDepart;
 import Consultas.ConsultaEmp;
+import Consultas.ConsultaEmpDepart;
+import Consultas.ConsultaEmpFecha;
+import Consultas.ConsultaEmpPuesto;
+import Consultas.ConsultaNominaFecha;
+import Consultas.ConsultaNominaIdEmp;
 import Consultas.ConsultaPuestos;
 import Login.LoginUsuario;
 
@@ -151,18 +156,43 @@ public class VentanaInicio extends javax.swing.JFrame {
         consulta.add(Empleados);
 
         EmpDepart.setText("Empleados por Departamento");
+        EmpDepart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmpDepartActionPerformed(evt);
+            }
+        });
         consulta.add(EmpDepart);
 
         EmpPuestos.setText("Empleados por Puestos");
+        EmpPuestos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmpPuestosActionPerformed(evt);
+            }
+        });
         consulta.add(EmpPuestos);
 
         EmpFecha.setText("Empleados por Fecha de Ingreso");
+        EmpFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmpFechaActionPerformed(evt);
+            }
+        });
         consulta.add(EmpFecha);
 
         NominaFecha.setText("Nómina por Fecha");
+        NominaFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NominaFechaActionPerformed(evt);
+            }
+        });
         consulta.add(NominaFecha);
 
         NominaIDEmp.setText("Nómona por ID_Empleado");
+        NominaIDEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NominaIDEmpActionPerformed(evt);
+            }
+        });
         consulta.add(NominaIDEmp);
 
         jMenuBar1.add(consulta);
@@ -223,6 +253,32 @@ public class VentanaInicio extends javax.swing.JFrame {
         ConsultaEmp cemp = new ConsultaEmp();
         cemp.setVisible(true);
     }//GEN-LAST:event_EmpleadosActionPerformed
+
+    private void EmpDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpDepartActionPerformed
+
+        ConsultaEmpDepart cempdepart = new ConsultaEmpDepart();
+        cempdepart.setVisible(true);
+    }//GEN-LAST:event_EmpDepartActionPerformed
+
+    private void EmpPuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpPuestosActionPerformed
+        ConsultaEmpPuesto cemppuesto = new ConsultaEmpPuesto();
+        cemppuesto.setVisible(true);
+    }//GEN-LAST:event_EmpPuestosActionPerformed
+
+    private void EmpFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpFechaActionPerformed
+        ConsultaEmpFecha cempfecha = new ConsultaEmpFecha();
+        cempfecha.setVisible(true);
+    }//GEN-LAST:event_EmpFechaActionPerformed
+
+    private void NominaFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NominaFechaActionPerformed
+        ConsultaNominaFecha cnominafecha = new ConsultaNominaFecha();
+        cnominafecha.setVisible(true);
+    }//GEN-LAST:event_NominaFechaActionPerformed
+
+    private void NominaIDEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NominaIDEmpActionPerformed
+       ConsultaNominaIdEmp cnominaid = new ConsultaNominaIdEmp();
+       cnominaid.setVisible(true);
+    }//GEN-LAST:event_NominaIDEmpActionPerformed
 
     /**
      * @param args the command line arguments
