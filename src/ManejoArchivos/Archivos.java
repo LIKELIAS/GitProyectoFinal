@@ -1,39 +1,40 @@
 package ManejoArchivos;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
+import java.io.*;
 
 public class Archivos {
-    public static void main(String[] arg){
-        File f = new File("D:\\DB\\Archivo.txt");
-        Scanner s = null;
-        try{
-            s=new Scanner(f);
-            if(!f.exists()){
-                f.createNewFile();
+    public void Guardar(String cadena, File archivo){
+        try{            
+            if(!archivo.exists()){
+                archivo.createNewFile();
                 JOptionPane.showMessageDialog(null, "El archivo no existe y sera creado");
             }
-            else{
-                JOptionPane.showMessageDialog(null, "El archivo existe");
-            }
+            BufferedWriter w = new BufferedWriter(new FileWriter(archivo, true));
+            w.write(cadena + "\r\n");
+            w.close();
         }
         catch(IOException e){
             JOptionPane.showMessageDialog(null, e);
         }
-        s.close();
-    }
-    
-    public static void ManejoArchivo(){
         
     }
     
-    public static void BorrarArchivo(){
+    public static void ModificarArchivo(){
         
     }
     
-    public static void Modificar(){
-        
+    public static void BorrarArchivo(File f){
+        try{
+            if(f.exists()){
+                f.delete();
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error " + e);
+        }
     }
 }
