@@ -62,6 +62,11 @@ public class ConsultaDepart extends javax.swing.JFrame {
         tableconsulta.setGridColor(new java.awt.Color(211, 211, 211));
         tableconsulta.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableconsulta);
+        if (tableconsulta.getColumnModel().getColumnCount() > 0) {
+            tableconsulta.getColumnModel().getColumn(0).setMinWidth(100);
+            tableconsulta.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tableconsulta.getColumnModel().getColumn(0).setMaxWidth(100);
+        }
 
         consultarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         consultarbt.setText("Consultar");

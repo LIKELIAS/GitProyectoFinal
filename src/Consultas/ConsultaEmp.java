@@ -54,6 +54,38 @@ public class ConsultaEmp extends javax.swing.JFrame {
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(55);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(55);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(55);
+            jTable1.getColumnModel().getColumn(1).setMinWidth(90);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(90);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(90);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(110);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(110);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(110);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(110);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(110);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(110);
+            jTable1.getColumnModel().getColumn(6).setMinWidth(65);
+            jTable1.getColumnModel().getColumn(6).setPreferredWidth(65);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(65);
+            jTable1.getColumnModel().getColumn(7).setMinWidth(110);
+            jTable1.getColumnModel().getColumn(7).setPreferredWidth(110);
+            jTable1.getColumnModel().getColumn(7).setMaxWidth(110);
+            jTable1.getColumnModel().getColumn(8).setMinWidth(110);
+            jTable1.getColumnModel().getColumn(8).setPreferredWidth(110);
+            jTable1.getColumnModel().getColumn(8).setMaxWidth(110);
+            jTable1.getColumnModel().getColumn(9).setMinWidth(70);
+            jTable1.getColumnModel().getColumn(9).setPreferredWidth(70);
+            jTable1.getColumnModel().getColumn(9).setMaxWidth(70);
+            jTable1.getColumnModel().getColumn(10).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(10).setPreferredWidth(80);
+            jTable1.getColumnModel().getColumn(10).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(11).setMinWidth(110);
+            jTable1.getColumnModel().getColumn(11).setPreferredWidth(110);
+            jTable1.getColumnModel().getColumn(11).setMaxWidth(110);
+        }
 
         consultarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         consultarbt.setText("Consultar");
