@@ -1,8 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Desplegables;
+
+import Consultas.ConsultaDepart;
+import Consultas.ConsultaEmp;
+import Consultas.ConsultaPuestos;
+import Login.LoginUsuario;
 
 /**
  *
@@ -38,37 +39,38 @@ public class VentanaInicio extends javax.swing.JFrame {
         generarnomina = new javax.swing.JMenuItem();
         reversarnomina = new javax.swing.JMenuItem();
         consulta = new javax.swing.JMenu();
+        Departamentos = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        Empleados = new javax.swing.JMenuItem();
+        EmpDepart = new javax.swing.JMenuItem();
+        EmpPuestos = new javax.swing.JMenuItem();
+        EmpFecha = new javax.swing.JMenuItem();
+        NominaFecha = new javax.swing.JMenuItem();
+        NominaIDEmp = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ventana de Inicio");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblLetrero.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        lblLetrero.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(232, Short.MAX_VALUE)
+                .addContainerGap(212, Short.MAX_VALUE)
                 .addComponent(lblLetrero, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112))
+                .addGap(132, 132, 132))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(101, 101, 101)
                 .addComponent(lblLetrero, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         menMantenimientos.setText("Mantenimientos");
@@ -118,30 +120,50 @@ public class VentanaInicio extends javax.swing.JFrame {
         jMenuBar1.add(menProcesos);
 
         consulta.setText("Consultas");
+        consulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultaActionPerformed(evt);
+            }
+        });
 
-        jMenuItem1.setText("Departamentos");
+        Departamentos.setText("Departamentos");
+        Departamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DepartamentosActionPerformed(evt);
+            }
+        });
+        consulta.add(Departamentos);
+
+        jMenuItem1.setText("Puestos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         consulta.add(jMenuItem1);
 
-        jMenuItem2.setText("Puestos");
-        consulta.add(jMenuItem2);
+        Empleados.setText("Empleados");
+        Empleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmpleadosActionPerformed(evt);
+            }
+        });
+        consulta.add(Empleados);
 
-        jMenuItem3.setText("Empleados");
-        consulta.add(jMenuItem3);
+        EmpDepart.setText("Empleados por Departamento");
+        consulta.add(EmpDepart);
 
-        jMenuItem4.setText("Empleados por Departamento");
-        consulta.add(jMenuItem4);
+        EmpPuestos.setText("Empleados por Puestos");
+        consulta.add(EmpPuestos);
 
-        jMenuItem5.setText("Empleados por Puestos");
-        consulta.add(jMenuItem5);
+        EmpFecha.setText("Empleados por Fecha de Ingreso");
+        consulta.add(EmpFecha);
 
-        jMenuItem6.setText("Empleados por Fecha de Ingreso");
-        consulta.add(jMenuItem6);
+        NominaFecha.setText("Nómina por Fecha");
+        consulta.add(NominaFecha);
 
-        jMenuItem7.setText("Nómina por Fecha");
-        consulta.add(jMenuItem7);
-
-        jMenuItem8.setText("Nómona por ID_Empleado");
-        consulta.add(jMenuItem8);
+        NominaIDEmp.setText("Nómona por ID_Empleado");
+        consulta.add(NominaIDEmp);
 
         jMenuBar1.add(consulta);
 
@@ -182,6 +204,26 @@ public class VentanaInicio extends javax.swing.JFrame {
         pu.setVisible(true);
     }//GEN-LAST:event_itmPuestoActionPerformed
 
+    private void DepartamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepartamentosActionPerformed
+        ConsultaDepart cdp = new ConsultaDepart();
+        cdp.setVisible(true);
+    }//GEN-LAST:event_DepartamentosActionPerformed
+
+    private void consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaActionPerformed
+        ConsultaPuestos cp = new ConsultaPuestos();
+        cp.setVisible(true);
+    }//GEN-LAST:event_consultaActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ConsultaPuestos cp = new ConsultaPuestos();
+        cp.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void EmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpleadosActionPerformed
+        ConsultaEmp cemp = new ConsultaEmp();
+        cemp.setVisible(true);
+    }//GEN-LAST:event_EmpleadosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -218,6 +260,13 @@ public class VentanaInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Departamentos;
+    private javax.swing.JMenuItem EmpDepart;
+    private javax.swing.JMenuItem EmpFecha;
+    private javax.swing.JMenuItem EmpPuestos;
+    private javax.swing.JMenuItem Empleados;
+    private javax.swing.JMenuItem NominaFecha;
+    private javax.swing.JMenuItem NominaIDEmp;
     private javax.swing.JMenu consulta;
     private javax.swing.JMenuItem generarnomina;
     private javax.swing.JMenuItem itmDepart;
@@ -226,13 +275,6 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem itmUsuario;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JLabel lblLetrero;
     public javax.swing.JMenu menMantenimientos;
