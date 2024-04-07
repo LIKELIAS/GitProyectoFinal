@@ -9,6 +9,8 @@ import Consultas.ConsultaNominaFecha;
 import Consultas.ConsultaNominaIdEmp;
 import Consultas.ConsultaPuestos;
 import Login.LoginUsuario;
+import Procesos.GenerarNomina;
+import Procesos.ReversarNomina;
 
 /**
  *
@@ -56,6 +58,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventana de Inicio");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -117,9 +124,19 @@ public class VentanaInicio extends javax.swing.JFrame {
         menProcesos.setText("Procesos");
 
         generarnomina.setText("Generar Nómina");
+        generarnomina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarnominaActionPerformed(evt);
+            }
+        });
         menProcesos.add(generarnomina);
 
         reversarnomina.setText("Reversar Nómina");
+        reversarnomina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reversarnominaActionPerformed(evt);
+            }
+        });
         menProcesos.add(reversarnomina);
 
         jMenuBar1.add(menProcesos);
@@ -280,6 +297,22 @@ public class VentanaInicio extends javax.swing.JFrame {
        cnominaid.setVisible(true);
     }//GEN-LAST:event_NominaIDEmpActionPerformed
 
+    private void generarnominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarnominaActionPerformed
+        GenerarNomina gn = new GenerarNomina();
+        gn.setVisible(true);
+    }//GEN-LAST:event_generarnominaActionPerformed
+
+    private void reversarnominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reversarnominaActionPerformed
+        ReversarNomina rvg = new ReversarNomina();
+        rvg.setVisible(true);
+    }//GEN-LAST:event_reversarnominaActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        LoginUsuario lg = new LoginUsuario();
+        lg.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -305,6 +338,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

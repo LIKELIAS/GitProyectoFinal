@@ -16,6 +16,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -96,8 +99,8 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="sexolbl" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="sexolbl" min="-2" pref="31" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
                                               <Component id="hombrebt" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="mujerbt" min="-2" max="-2" attributes="0"/>
@@ -109,8 +112,8 @@
                                               </Group>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="txtiddepart" pref="150" max="32767" attributes="0"/>
-                                                  <Component id="txtfechaingreso" max="32767" attributes="0"/>
+                                                  <Component id="txtfechaingreso" pref="150" max="32767" attributes="0"/>
+                                                  <Component id="txtiddepart" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
@@ -206,32 +209,30 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="fechalbl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtidpuesto" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="idpuestolbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="sibt" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="nobt" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cooperativalbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtsalario" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="salariolbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="guardarbt" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="limpiarbt" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="salirbt" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
                       <Component id="txtfechaingreso" min="-2" max="-2" attributes="0"/>
+                      <Component id="fechalbl" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtidpuesto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="idpuestolbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="sibt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nobt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cooperativalbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtsalario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="salariolbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="guardarbt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="limpiarbt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="salirbt" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
@@ -394,6 +395,14 @@
             <Property name="text" type="java.lang.String" value="Fecha de Ingreso"/>
           </Properties>
         </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="txtfechaingreso">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="d-MM-y"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Trebuchet MS" size="12" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JTextField" name="txtidpuesto">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -461,6 +470,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarbtActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="limpiarbt">
           <Properties>
@@ -483,8 +495,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirbtActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="txtfechaingreso">
         </Component>
       </SubComponents>
     </Container>

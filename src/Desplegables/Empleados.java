@@ -1,5 +1,11 @@
 package Desplegables;
 
+import ManejoArchivos.Archivos;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+
 public class Empleados extends javax.swing.JFrame {
 
     /**
@@ -40,6 +46,7 @@ public class Empleados extends javax.swing.JFrame {
         txtiddepart = new javax.swing.JTextField();
         iddepartlbl = new javax.swing.JLabel();
         fechalbl = new javax.swing.JLabel();
+        txtfechaingreso = new com.toedter.calendar.JDateChooser();
         txtidpuesto = new javax.swing.JTextField();
         idpuestolbl = new javax.swing.JLabel();
         sibt = new javax.swing.JRadioButton();
@@ -50,11 +57,15 @@ public class Empleados extends javax.swing.JFrame {
         guardarbt = new javax.swing.JButton();
         limpiarbt = new javax.swing.JButton();
         salirbt = new javax.swing.JButton();
-        txtfechaingreso = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Empleados");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         etqEstado.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         etqEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -108,6 +119,9 @@ public class Empleados extends javax.swing.JFrame {
         fechalbl.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         fechalbl.setText("Fecha de Ingreso");
 
+        txtfechaingreso.setDateFormatString("d-MM-y");
+        txtfechaingreso.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+
         txtidpuesto.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
 
         idpuestolbl.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
@@ -131,6 +145,11 @@ public class Empleados extends javax.swing.JFrame {
 
         guardarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         guardarbt.setText("Guardar");
+        guardarbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarbtActionPerformed(evt);
+            }
+        });
 
         limpiarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         limpiarbt.setText("Limpiar");
@@ -191,8 +210,8 @@ public class Empleados extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(sexolbl)
-                                            .addGap(18, 18, 18)
+                                            .addComponent(sexolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(hombrebt)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(mujerbt))
@@ -202,8 +221,8 @@ public class Empleados extends javax.swing.JFrame {
                                                 .addComponent(fechalbl))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txtiddepart, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                                .addComponent(txtfechaingreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addComponent(txtfechaingreso, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                                .addComponent(txtiddepart)))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(idpuestolbl)
@@ -273,27 +292,26 @@ public class Empleados extends javax.swing.JFrame {
                     .addComponent(iddepartlbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(fechalbl)
-                        .addGap(15, 15, 15)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtidpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idpuestolbl))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sibt)
-                            .addComponent(nobt)
-                            .addComponent(cooperativalbl))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtsalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(salariolbl))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(guardarbt)
-                            .addComponent(limpiarbt)
-                            .addComponent(salirbt)))
-                    .addComponent(txtfechaingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtfechaingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechalbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtidpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idpuestolbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sibt)
+                    .addComponent(nobt)
+                    .addComponent(cooperativalbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtsalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(salariolbl))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(guardarbt)
+                    .addComponent(limpiarbt)
+                    .addComponent(salirbt))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
@@ -339,6 +357,48 @@ public class Empleados extends javax.swing.JFrame {
         }
         txtsalario.setText("");
     }//GEN-LAST:event_limpiarbtActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void guardarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarbtActionPerformed
+        Archivos ar = new Archivos();
+        File emp = new File("D:\\DB\\Empleados.txt");
+        String id, nombre, apellidopat, apellidomat, direc, telefono, sexo = null, iddp, fechain, idp, coop = null, salario, empleado;
+        try{
+            if(!emp.exists()){
+                emp.createNewFile();
+            }
+            id=txtid.getText();
+            nombre=txtnombre.getText();
+            apellidopat=txtapellidopat.getText();
+            apellidomat=txtapellidomat.getText();
+            direc=txtdireccion.getText();
+            telefono=txttelefono.getText();
+            iddp=txtiddepart.getText();
+            if(hombrebt.isSelected()){
+                sexo="H";
+            }else if(mujerbt.isSelected()){
+                sexo="M";
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-y");
+            fechain=sdf.format(txtfechaingreso.getDate());
+            idp=txtidpuesto.getText();
+            if(sibt.isSelected()){
+                coop="S";
+            }else if(nobt.isSelected()){
+                coop="N";
+            }
+            salario=txtsalario.getText();
+            empleado=id+";"+nombre+";"+apellidopat+";"+apellidomat+";"+direc+";"+telefono+";"+sexo+";"+iddp+";"+fechain+";"+idp+";"+coop+";"+salario;
+            ar.Guardar(empleado, emp);
+        }
+        catch(IOException ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        limpiarbtActionPerformed(evt);
+    }//GEN-LAST:event_guardarbtActionPerformed
 
     /**
      * @param args the command line arguments

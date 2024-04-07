@@ -2,6 +2,7 @@ package Login;
 
 import ManejoArchivos.Archivos;
 import Desplegables.VentanaInicio;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -81,6 +82,11 @@ public class LoginUsuario extends javax.swing.JFrame {
         txtpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtpasswordActionPerformed(evt);
+            }
+        });
+        txtpassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpasswordKeyPressed(evt);
             }
         });
         jPanel3.add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 150, -1));
@@ -201,6 +207,15 @@ public class LoginUsuario extends javax.swing.JFrame {
     private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
         ingresarBt.grabFocus();
     }//GEN-LAST:event_txtpasswordActionPerformed
+
+    private void txtpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyPressed
+    
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+          //  JOptionPane.showMessageDialog(null, "presionaste enter");
+          //ingresarBtActionPerformed(evt);
+        }
+    
+    }//GEN-LAST:event_txtpasswordKeyPressed
 
     /**
      * @param args the command line arguments

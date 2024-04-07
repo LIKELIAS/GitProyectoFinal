@@ -24,8 +24,44 @@ public class Archivos {
         
     }
     
-    public static void ModificarArchivo(){
+    public void ModificarArchivo(String Oldcadena, String Newcadena, File Oarchivo){
+        File Narchivo = new File("D:\\DB\\temp.txt");
+
+        try {
+            Narchivo.createNewFile();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
         
+        BufferedReader br;
+        try {
+            if (Oarchivo.exists()) {
+
+                br = new BufferedReader(new FileReader(Oarchivo));
+
+                String linea;
+
+                while ((linea = br.readLine()) != null) {
+
+                    if (linea.equals(Oldcadena)) {
+                        Guardar(Newcadena, Narchivo);
+                    } else {
+                        Guardar(linea, Narchivo);
+                    }
+                }
+
+                br.close();
+
+                BorrarArchivo(Oarchivo);
+                Narchivo.renameTo(Oarchivo);
+
+            } else {
+                System.out.println("No existe el archivo");
+            }
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
     
     public static void BorrarArchivo(File f){
