@@ -1,5 +1,11 @@
 package Desplegables;
 
+import ManejoArchivos.Archivos;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+
 public class Empleados extends javax.swing.JFrame {
 
     /**
@@ -55,6 +61,11 @@ public class Empleados extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Empleados");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         etqEstado.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         etqEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -134,6 +145,11 @@ public class Empleados extends javax.swing.JFrame {
 
         guardarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         guardarbt.setText("Guardar");
+        guardarbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarbtActionPerformed(evt);
+            }
+        });
 
         limpiarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         limpiarbt.setText("Limpiar");
@@ -341,6 +357,48 @@ public class Empleados extends javax.swing.JFrame {
         }
         txtsalario.setText("");
     }//GEN-LAST:event_limpiarbtActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void guardarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarbtActionPerformed
+        Archivos ar = new Archivos();
+        File emp = new File("D:\\DB\\Empleados.txt");
+        String id, nombre, apellidopat, apellidomat, direc, telefono, sexo = null, iddp, fechain, idp, coop = null, salario, empleado;
+        try{
+            if(!emp.exists()){
+                emp.createNewFile();
+            }
+            id=txtid.getText();
+            nombre=txtnombre.getText();
+            apellidopat=txtapellidopat.getText();
+            apellidomat=txtapellidomat.getText();
+            direc=txtdireccion.getText();
+            telefono=txttelefono.getText();
+            iddp=txtiddepart.getText();
+            if(hombrebt.isSelected()){
+                sexo="H";
+            }else if(mujerbt.isSelected()){
+                sexo="M";
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-y");
+            fechain=sdf.format(txtfechaingreso.getDate());
+            idp=txtidpuesto.getText();
+            if(sibt.isSelected()){
+                coop="S";
+            }else if(nobt.isSelected()){
+                coop="N";
+            }
+            salario=txtsalario.getText();
+            empleado=id+";"+nombre+";"+apellidopat+";"+apellidomat+";"+direc+";"+telefono+";"+sexo+";"+iddp+";"+fechain+";"+idp+";"+coop+";"+salario;
+            ar.Guardar(empleado, emp);
+        }
+        catch(IOException ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        limpiarbtActionPerformed(evt);
+    }//GEN-LAST:event_guardarbtActionPerformed
 
     /**
      * @param args the command line arguments

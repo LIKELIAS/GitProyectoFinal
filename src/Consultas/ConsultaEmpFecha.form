@@ -3,15 +3,14 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="Consultas de Empleados"/>
-    <Property name="resizable" type="boolean" value="false"/>
+    <Property name="title" type="java.lang.String" value="Consulta de Empleados por Fecha de Ingreso"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <Events>
-    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="WindowClose"/>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
   </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -48,24 +47,41 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jScrollPane1" alignment="0" pref="1106" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="consultarbt" linkSize="1" min="-2" pref="91" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="salirbt" linkSize="1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel_FechaIngreso" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="jDateChooserFecha" min="-2" pref="151" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="consultarbt" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="salirbt" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jtitulo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="348" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="consultarbt" linkSize="2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="salirbt" linkSize="2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jtitulo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="consultarbt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="salirbt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel_FechaIngreso" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="239" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jDateChooserFecha" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="245" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -78,7 +94,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tablaemp">
+            <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="12" style="0"/>
@@ -101,7 +117,7 @@
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="80" minWidth="80" prefWidth="80" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -131,7 +147,7 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="45" minWidth="45" prefWidth="45" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -156,7 +172,7 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="110" minWidth="110" prefWidth="110" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -177,9 +193,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Consultar"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultarbtActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="salirbt">
           <Properties>
@@ -191,6 +204,27 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirbtActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jtitulo">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Trebuchet MS" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Consulta de Empleados por Fecha de ingreso"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel_FechaIngreso">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Trebuchet MS" size="12" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Fecha de ingreso"/>
+          </Properties>
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserFecha">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="d-MM-y"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

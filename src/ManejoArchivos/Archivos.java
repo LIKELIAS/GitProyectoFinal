@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import java.io.*;
 
 public class Archivos {
     public void Guardar(String cadena, File archivo){
@@ -24,7 +23,7 @@ public class Archivos {
         
     }
     
-    public static void ModificarArchivo(){
+    public void ModificarArchivo(){
         
     }
     

@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Consultas;
 
-/**
- *
- * @author LIKELIAS
- */
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class ConsultaEmp extends javax.swing.JFrame {
 
     /**
@@ -15,8 +13,9 @@ public class ConsultaEmp extends javax.swing.JFrame {
      */
     public ConsultaEmp() {
         initComponents();
+        Tabla = (DefaultTableModel) tablaemp.getModel();
     }
-
+    public DefaultTableModel Tabla;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,15 +27,21 @@ public class ConsultaEmp extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaemp = new javax.swing.JTable();
         consultarbt = new javax.swing.JButton();
         salirbt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Consultas de Empleados");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                WindowClose(evt);
+            }
+        });
 
-        jTable1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaemp.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        tablaemp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -52,43 +57,32 @@ public class ConsultaEmp extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(55);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(55);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(55);
-            jTable1.getColumnModel().getColumn(1).setMinWidth(90);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(90);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(90);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(110);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(110);
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(110);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(110);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(110);
-            jTable1.getColumnModel().getColumn(3).setMaxWidth(110);
-            jTable1.getColumnModel().getColumn(6).setMinWidth(65);
-            jTable1.getColumnModel().getColumn(6).setPreferredWidth(65);
-            jTable1.getColumnModel().getColumn(6).setMaxWidth(65);
-            jTable1.getColumnModel().getColumn(7).setMinWidth(110);
-            jTable1.getColumnModel().getColumn(7).setPreferredWidth(110);
-            jTable1.getColumnModel().getColumn(7).setMaxWidth(110);
-            jTable1.getColumnModel().getColumn(8).setMinWidth(110);
-            jTable1.getColumnModel().getColumn(8).setPreferredWidth(110);
-            jTable1.getColumnModel().getColumn(8).setMaxWidth(110);
-            jTable1.getColumnModel().getColumn(9).setMinWidth(70);
-            jTable1.getColumnModel().getColumn(9).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(9).setMaxWidth(70);
-            jTable1.getColumnModel().getColumn(10).setMinWidth(80);
-            jTable1.getColumnModel().getColumn(10).setPreferredWidth(80);
-            jTable1.getColumnModel().getColumn(10).setMaxWidth(80);
-            jTable1.getColumnModel().getColumn(11).setMinWidth(110);
-            jTable1.getColumnModel().getColumn(11).setPreferredWidth(110);
-            jTable1.getColumnModel().getColumn(11).setMaxWidth(110);
+        tablaemp.getTableHeader().setResizingAllowed(false);
+        tablaemp.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tablaemp);
+        if (tablaemp.getColumnModel().getColumnCount() > 0) {
+            tablaemp.getColumnModel().getColumn(0).setMinWidth(80);
+            tablaemp.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tablaemp.getColumnModel().getColumn(0).setMaxWidth(80);
+            tablaemp.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tablaemp.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tablaemp.getColumnModel().getColumn(6).setMinWidth(45);
+            tablaemp.getColumnModel().getColumn(6).setPreferredWidth(45);
+            tablaemp.getColumnModel().getColumn(6).setMaxWidth(45);
+            tablaemp.getColumnModel().getColumn(7).setPreferredWidth(100);
+            tablaemp.getColumnModel().getColumn(8).setPreferredWidth(100);
+            tablaemp.getColumnModel().getColumn(11).setMinWidth(110);
+            tablaemp.getColumnModel().getColumn(11).setPreferredWidth(110);
+            tablaemp.getColumnModel().getColumn(11).setMaxWidth(110);
         }
 
         consultarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         consultarbt.setText("Consultar");
+        consultarbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarbtActionPerformed(evt);
+            }
+        });
 
         salirbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         salirbt.setText("Salir");
@@ -147,6 +141,51 @@ public class ConsultaEmp extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_salirbtActionPerformed
 
+    private void WindowClose(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_WindowClose
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_WindowClose
+
+    private void consultarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtActionPerformed
+        boolean filas = false;
+        String idemp, nomemp, apatemp, amatemp, direcemp, telemp, sxemp, iddepart, fechain, idpuest, coop, salario;
+        
+        File f = new File("D:\\DB\\Empleados.txt");
+        
+        try{
+            if(!f.exists()){
+                JOptionPane.showMessageDialog(null, "ESTE ARCHIVO NO EXISTE");
+            }
+            else{
+                Scanner a = new Scanner(f);
+                while(a.hasNextLine()){
+                    String linea = a.nextLine();
+                    Scanner a1 = new Scanner(linea);
+
+                    a1.useDelimiter("\\s*;\\s*");
+                    
+                    idemp=a1.next();
+                    nomemp=a1.next();
+                    apatemp=a1.next();
+                    amatemp=a1.next();
+                    direcemp=a1.next();
+                    telemp=a1.next();
+                    sxemp=a1.next();
+                    iddepart=a1.next();
+                    fechain=a1.next();
+                    idpuest=a1.next();
+                    coop=a1.next();
+                    salario=a1.next();
+                    
+                    Tabla.addRow(new Object[]{idemp, nomemp, apatemp, amatemp, direcemp, telemp, sxemp, iddepart, fechain, idpuest, coop, "$"+salario});
+                }
+                a.close();
+            }
+        }
+        catch(IOException ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_consultarbtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -173,6 +212,7 @@ public class ConsultaEmp extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ConsultaEmp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -186,7 +226,7 @@ public class ConsultaEmp extends javax.swing.JFrame {
     private javax.swing.JButton consultarbt;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton salirbt;
+    private javax.swing.JTable tablaemp;
     // End of variables declaration//GEN-END:variables
 }

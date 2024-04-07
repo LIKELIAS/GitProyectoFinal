@@ -36,6 +36,7 @@ public class LoginUsuario extends javax.swing.JFrame {
         iniciodesesion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -188,7 +189,7 @@ public class LoginUsuario extends javax.swing.JFrame {
         if(!archivosDBase.exists()){
             archivosDBase.mkdir();
             
-            String Administrador = "Admin;4321;1;Provisional;Provisional";
+            String Administrador = "Admin;4321;0;Admin;Provisional";
             File uf = new File("D:\\DB\\Usuario.txt");
             ar.Guardar(Administrador, uf);
         }

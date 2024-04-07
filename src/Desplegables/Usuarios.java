@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Desplegables;
 
-/**
- *
- * @author LIKELIAS
- */
+import ManejoArchivos.Archivos;
+import java.io.File;
+import javax.swing.JOptionPane;
+
 public class Usuarios extends javax.swing.JFrame {
 
     /**
@@ -49,6 +45,11 @@ public class Usuarios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Usuarios");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         etqEstado.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         etqEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -62,6 +63,11 @@ public class Usuarios extends javax.swing.JFrame {
         passwordlbl.setText("Password");
 
         txtpassword.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        txtpassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpasswordActionPerformed(evt);
+            }
+        });
 
         nombrelbl.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         nombrelbl.setText("Nombre");
@@ -92,6 +98,11 @@ public class Usuarios extends javax.swing.JFrame {
 
         guardarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         guardarbt.setText("Guardar");
+        guardarbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarbtActionPerformed(evt);
+            }
+        });
 
         limpiarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         limpiarbt.setText("Limpiar");
@@ -228,6 +239,54 @@ public class Usuarios extends javax.swing.JFrame {
         txtemail.setText("");
         etqEstado.setText("");
     }//GEN-LAST:event_limpiarbtActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void guardarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarbtActionPerformed
+        Archivos ar = new Archivos();
+        File nwa = new File("D:\\DB\\Usuario.txt");
+        boolean validar = true;
+        String usuario, nivel = null, login, pass, nombre, apellido;
+        //do{
+            if(txtlogin.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo de login no debe estar vacio");
+                validar=false;
+                txtlogin.grabFocus();
+            }else if(txtpassword.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo de password no debe estar vacio");
+                validar=false;
+                txtpassword.grabFocus();
+            }else if(txtnombre.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El nombre nombre no debe estar vacio");
+                validar=false;
+                txtnombre.grabFocus();
+            }else if(txtapellidos.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Los apellidos no deben estar vacios");
+                validar=false;
+                txtapellidos.grabFocus();
+            }
+        //}while(validar!=true);
+        
+        login=txtlogin.getText();
+        pass=txtpassword.getText();
+        nombre=txtnombre.getText();
+        apellido=txtapellidos.getText();        
+        if(adminbt.isSelected()){
+            nivel="0";
+        }else if(normalbt.isSelected()){
+            nivel="1";
+        }
+        usuario= login+";"+pass+";"+nivel+";"+nombre+";"+apellido;
+        ar.Guardar(usuario, nwa);
+        
+        limpiarbtActionPerformed(evt);
+    }//GEN-LAST:event_guardarbtActionPerformed
+
+    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
+        
+    }//GEN-LAST:event_txtpasswordActionPerformed
 
     /**
      * @param args the command line arguments

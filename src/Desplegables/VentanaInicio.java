@@ -2,8 +2,15 @@ package Desplegables;
 
 import Consultas.ConsultaDepart;
 import Consultas.ConsultaEmp;
+import Consultas.ConsultaEmpDepart;
+import Consultas.ConsultaEmpFecha;
+import Consultas.ConsultaEmpPuesto;
+import Consultas.ConsultaNominaFecha;
+import Consultas.ConsultaNominaIdEmp;
 import Consultas.ConsultaPuestos;
 import Login.LoginUsuario;
+import Procesos.GenerarNomina;
+import Procesos.ReversarNomina;
 
 /**
  *
@@ -51,6 +58,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventana de Inicio");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -112,9 +124,19 @@ public class VentanaInicio extends javax.swing.JFrame {
         menProcesos.setText("Procesos");
 
         generarnomina.setText("Generar Nómina");
+        generarnomina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarnominaActionPerformed(evt);
+            }
+        });
         menProcesos.add(generarnomina);
 
         reversarnomina.setText("Reversar Nómina");
+        reversarnomina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reversarnominaActionPerformed(evt);
+            }
+        });
         menProcesos.add(reversarnomina);
 
         jMenuBar1.add(menProcesos);
@@ -151,18 +173,43 @@ public class VentanaInicio extends javax.swing.JFrame {
         consulta.add(Empleados);
 
         EmpDepart.setText("Empleados por Departamento");
+        EmpDepart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmpDepartActionPerformed(evt);
+            }
+        });
         consulta.add(EmpDepart);
 
         EmpPuestos.setText("Empleados por Puestos");
+        EmpPuestos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmpPuestosActionPerformed(evt);
+            }
+        });
         consulta.add(EmpPuestos);
 
         EmpFecha.setText("Empleados por Fecha de Ingreso");
+        EmpFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmpFechaActionPerformed(evt);
+            }
+        });
         consulta.add(EmpFecha);
 
         NominaFecha.setText("Nómina por Fecha");
+        NominaFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NominaFechaActionPerformed(evt);
+            }
+        });
         consulta.add(NominaFecha);
 
         NominaIDEmp.setText("Nómona por ID_Empleado");
+        NominaIDEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NominaIDEmpActionPerformed(evt);
+            }
+        });
         consulta.add(NominaIDEmp);
 
         jMenuBar1.add(consulta);
@@ -224,6 +271,48 @@ public class VentanaInicio extends javax.swing.JFrame {
         cemp.setVisible(true);
     }//GEN-LAST:event_EmpleadosActionPerformed
 
+    private void EmpDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpDepartActionPerformed
+
+        ConsultaEmpDepart cempdepart = new ConsultaEmpDepart();
+        cempdepart.setVisible(true);
+    }//GEN-LAST:event_EmpDepartActionPerformed
+
+    private void EmpPuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpPuestosActionPerformed
+        ConsultaEmpPuesto cemppuesto = new ConsultaEmpPuesto();
+        cemppuesto.setVisible(true);
+    }//GEN-LAST:event_EmpPuestosActionPerformed
+
+    private void EmpFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpFechaActionPerformed
+        ConsultaEmpFecha cempfecha = new ConsultaEmpFecha();
+        cempfecha.setVisible(true);
+    }//GEN-LAST:event_EmpFechaActionPerformed
+
+    private void NominaFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NominaFechaActionPerformed
+        ConsultaNominaFecha cnominafecha = new ConsultaNominaFecha();
+        cnominafecha.setVisible(true);
+    }//GEN-LAST:event_NominaFechaActionPerformed
+
+    private void NominaIDEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NominaIDEmpActionPerformed
+       ConsultaNominaIdEmp cnominaid = new ConsultaNominaIdEmp();
+       cnominaid.setVisible(true);
+    }//GEN-LAST:event_NominaIDEmpActionPerformed
+
+    private void generarnominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarnominaActionPerformed
+        GenerarNomina gn = new GenerarNomina();
+        gn.setVisible(true);
+    }//GEN-LAST:event_generarnominaActionPerformed
+
+    private void reversarnominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reversarnominaActionPerformed
+        ReversarNomina rvg = new ReversarNomina();
+        rvg.setVisible(true);
+    }//GEN-LAST:event_reversarnominaActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        LoginUsuario lg = new LoginUsuario();
+        lg.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -249,6 +338,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

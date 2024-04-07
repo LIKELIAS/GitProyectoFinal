@@ -6,14 +6,14 @@ package Consultas;
 
 /**
  *
- * @author LIKELIAS
+ * @author Asistente
  */
-public class ConsultaDepart extends javax.swing.JFrame {
+public class ConsultaEmpPuesto extends javax.swing.JFrame {
 
     /**
-     * Creates new form ConsultaDepart
+     * Creates new form ConsultaEmpPuesto
      */
-    public ConsultaDepart() {
+    public ConsultaEmpPuesto() {
         initComponents();
     }
 
@@ -28,55 +28,61 @@ public class ConsultaDepart extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableconsulta = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         consultarbt = new javax.swing.JButton();
         salirbt = new javax.swing.JButton();
-        txtbuscardepart = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jtitulo = new javax.swing.JLabel();
+        jLabel_ID_Puesto = new javax.swing.JLabel();
+        TextIdDepart = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Consulta Departamentos");
-        setResizable(false);
+        setTitle("Consulta de Empleados por Puesto");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
-                WindowClose(evt);
+                formWindowClosing(evt);
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-
-        tableconsulta.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        tableconsulta.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Descripción"
+                "ID", "Nombre", "Apellido Paterno", "Apellido Materno", "Dirección", "Teléfono", "Sexo", "ID Departamento", "Fecha de Ingreso", "ID Puesto", "Cooperativa", "Salario"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tableconsulta.setGridColor(new java.awt.Color(211, 211, 211));
-        tableconsulta.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tableconsulta);
-        if (tableconsulta.getColumnModel().getColumnCount() > 0) {
-            tableconsulta.getColumnModel().getColumn(0).setMinWidth(110);
-            tableconsulta.getColumnModel().getColumn(0).setPreferredWidth(110);
-            tableconsulta.getColumnModel().getColumn(0).setMaxWidth(110);
+        jTable1.getTableHeader().setResizingAllowed(false);
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(80);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(6).setMinWidth(45);
+            jTable1.getColumnModel().getColumn(6).setPreferredWidth(45);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(45);
+            jTable1.getColumnModel().getColumn(7).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(8).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(11).setMinWidth(110);
+            jTable1.getColumnModel().getColumn(11).setPreferredWidth(110);
+            jTable1.getColumnModel().getColumn(11).setMaxWidth(110);
         }
 
-        consultarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        consultarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         consultarbt.setText("Consultar");
 
-        salirbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        salirbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         salirbt.setText("Salir");
         salirbt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,48 +90,54 @@ public class ConsultaDepart extends javax.swing.JFrame {
             }
         });
 
-        txtbuscardepart.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jtitulo.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jtitulo.setText("Consulta de Empleados por Puesto");
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel1.setText("Consulta de Departamentos");
+        jLabel_ID_Puesto.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jLabel_ID_Puesto.setText("ID_Puesto");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
+                .addComponent(jLabel_ID_Puesto)
+                .addGap(18, 18, 18)
+                .addComponent(TextIdDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(consultarbt)
-                .addGap(50, 50, 50)
-                .addComponent(txtbuscardepart, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(salirbt)
-                .addGap(25, 25, 25))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(139, 139, 139))
+                .addComponent(jtitulo)
+                .addGap(348, 348, 348))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 14, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(jtitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(consultarbt)
                     .addComponent(salirbt)
-                    .addComponent(txtbuscardepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel_ID_Puesto)
+                    .addComponent(TextIdDepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,9 +152,9 @@ public class ConsultaDepart extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_salirbtActionPerformed
 
-    private void WindowClose(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_WindowClose
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    }//GEN-LAST:event_WindowClose
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -161,13 +173,13 @@ public class ConsultaDepart extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultaDepart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaEmpPuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultaDepart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaEmpPuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultaDepart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaEmpPuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultaDepart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaEmpPuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -175,18 +187,19 @@ public class ConsultaDepart extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultaDepart().setVisible(true);
+                new ConsultaEmpPuesto().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TextIdDepart;
     private javax.swing.JButton consultarbt;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel_ID_Puesto;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jtitulo;
     private javax.swing.JButton salirbt;
-    private javax.swing.JTable tableconsulta;
-    private javax.swing.JTextField txtbuscardepart;
     // End of variables declaration//GEN-END:variables
 }

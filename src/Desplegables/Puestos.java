@@ -31,6 +31,11 @@ public class Puestos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Puestos");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(142, 205, 221));
 
@@ -166,6 +171,10 @@ public class Puestos extends javax.swing.JFrame {
     private void txtID_puestoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtID_puestoKeyPressed
         
     }//GEN-LAST:event_txtID_puestoKeyPressed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
