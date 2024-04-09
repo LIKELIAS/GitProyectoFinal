@@ -1,5 +1,10 @@
 package Desplegables;
 
+import ManejoArchivos.Archivos;
+import java.io.File;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
 public class Cooperativa extends javax.swing.JFrame {
 
     /**
@@ -9,10 +14,15 @@ public class Cooperativa extends javax.swing.JFrame {
         initComponents();
     }
     private String dato;
+    private String dato1;
     
     public void Dato(String dato){
         this.dato=dato;
         IDemp.setText(dato);
+    }
+    
+    public void Dato1(String dato1){
+        this.dato1=dato1;
     }
 
     /**
@@ -67,6 +77,11 @@ public class Cooperativa extends javax.swing.JFrame {
 
         guardarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         guardarbt.setText("Guardar");
+        guardarbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarbtActionPerformed(evt);
+            }
+        });
 
         salirbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         salirbt.setText("Salir");
@@ -83,6 +98,11 @@ public class Cooperativa extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(guardarbt)
+                        .addGap(40, 40, 40)
+                        .addComponent(salirbt))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -96,12 +116,7 @@ public class Cooperativa extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(IDemp, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(guardarbt)
-                        .addGap(40, 40, 40)
-                        .addComponent(salirbt)))
+                                .addComponent(IDemp, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -110,7 +125,7 @@ public class Cooperativa extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(IDemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -157,6 +172,29 @@ public class Cooperativa extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         txtporcent.grabFocus();
     }//GEN-LAST:event_formWindowOpened
+
+    private void guardarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarbtActionPerformed
+        Archivos ar = new Archivos();
+        String id, coopemp;
+        id= IDemp.getText();
+        double slr = Integer.parseInt(dato1);
+        double porcentaje = Integer.parseInt(txtporcent.getText());
+        
+        double balance = slr * (porcentaje/100);
+        
+        File f = new File("D:\\DB\\Cooperativa.txt");
+        try{
+            if(!f.exists()){
+                f.createNewFile();
+            }
+            coopemp=id+";"+porcentaje+";"+balance;
+            ar.Guardar(coopemp, f);
+        }
+        catch(IOException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        this.dispose();
+    }//GEN-LAST:event_guardarbtActionPerformed
 
     /**
      * @param args the command line arguments

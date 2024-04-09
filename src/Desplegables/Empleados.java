@@ -130,6 +130,7 @@ public class Empleados extends javax.swing.JFrame {
         Grupo2.add(sibt);
         sibt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         sibt.setText("Si");
+        sibt.setEnabled(false);
         sibt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sibtActionPerformed(evt);
@@ -139,11 +140,17 @@ public class Empleados extends javax.swing.JFrame {
         Grupo2.add(nobt);
         nobt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         nobt.setText("No");
+        nobt.setEnabled(false);
 
         cooperativalbl.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         cooperativalbl.setText("Cooperativa");
 
         txtsalario.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        txtsalario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtsalarioActionPerformed(evt);
+            }
+        });
 
         salariolbl.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         salariolbl.setText("Salario");
@@ -241,19 +248,15 @@ public class Empleados extends javax.swing.JFrame {
                                                 .addGap(37, 37, 37)
                                                 .addComponent(IDpCB, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(salariolbl)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txtsalario, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(49, 49, 49))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(guardarbt)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(limpiarbt)
-                                                .addGap(32, 32, 32)))
-                                        .addGap(9, 9, 9)
-                                        .addComponent(salirbt)))))
+                                        .addComponent(guardarbt)
+                                        .addGap(49, 49, 49)
+                                        .addComponent(limpiarbt)
+                                        .addGap(41, 41, 41)
+                                        .addComponent(salirbt))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(salariolbl)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtsalario, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 48, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -301,23 +304,22 @@ public class Empleados extends javax.swing.JFrame {
                     .addComponent(fechalbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(idpuestolbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sibt)
-                            .addComponent(nobt)
-                            .addComponent(cooperativalbl))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtsalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(salariolbl))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(guardarbt)
-                            .addComponent(limpiarbt)
-                            .addComponent(salirbt)))
+                    .addComponent(idpuestolbl)
                     .addComponent(IDpCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtsalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(salariolbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sibt)
+                    .addComponent(nobt)
+                    .addComponent(cooperativalbl))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(guardarbt)
+                    .addComponent(limpiarbt)
+                    .addComponent(salirbt))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -384,15 +386,17 @@ public class Empleados extends javax.swing.JFrame {
             }else if(mujerbt.isSelected()){
                 sexo="M";
             }
+            iddp=(String) IDdptCB.getSelectedItem();
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-y");
             fechain=sdf.format(txtfechaingreso.getDate());
+            idp=(String) IDpCB.getSelectedItem();
             if(sibt.isSelected()){
                 coop="S";
             }else if(nobt.isSelected()){
                 coop="N";
             }
             salario=txtsalario.getText();
-            empleado=id+";"+nombre+";"+apellidopat+";"+apellidomat+";"+direc+";"+telefono+";"+sexo+";"+";"+fechain+";"+";"+coop+";"+salario;
+            empleado=id+";"+nombre+";"+apellidopat+";"+apellidomat+";"+direc+";"+telefono+";"+sexo+";"+iddp+";"+fechain+";"+idp+";"+coop+";"+salario;
             ar.Guardar(empleado, emp);
         }
         catch(IOException ex){
@@ -404,7 +408,10 @@ public class Empleados extends javax.swing.JFrame {
     private void sibtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sibtActionPerformed
         Cooperativa cop = new Cooperativa();
         String id = txtid.getText();
+        String salario = txtsalario.getText();
+        
         cop.Dato(id);
+        cop.Dato1(salario);
         cop.setVisible(true);
         
     }//GEN-LAST:event_sibtActionPerformed
@@ -466,6 +473,11 @@ public class Empleados extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void txtsalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsalarioActionPerformed
+        sibt.setEnabled(true);
+        nobt.setEnabled(true);
+    }//GEN-LAST:event_txtsalarioActionPerformed
     
     public static void main(String args[]) {
                 

@@ -135,22 +135,16 @@
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="salariolbl" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="txtsalario" min="-2" pref="123" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="guardarbt" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="limpiarbt" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                          <Component id="guardarbt" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                                          <Component id="limpiarbt" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                                           <Component id="salirbt" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="salariolbl" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="txtsalario" min="-2" pref="123" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -215,27 +209,25 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="idpuestolbl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="sibt" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="nobt" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cooperativalbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtsalario" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="salariolbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="guardarbt" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="limpiarbt" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="salirbt" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Component id="IDpCB" min="-2" max="-2" attributes="0"/>
+                      <Component id="idpuestolbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="IDpCB" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtsalario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="salariolbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="sibt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nobt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cooperativalbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="guardarbt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="limpiarbt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="salirbt" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="47" max="32767" attributes="0"/>
               </Group>
@@ -419,6 +411,7 @@
               <Font name="Trebuchet MS" size="12" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Si"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sibtActionPerformed"/>
@@ -433,6 +426,7 @@
               <Font name="Trebuchet MS" size="12" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="No"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="cooperativalbl">
@@ -449,6 +443,9 @@
               <Font name="Trebuchet MS" size="12" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtsalarioActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="salariolbl">
           <Properties>
