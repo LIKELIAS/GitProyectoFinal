@@ -1,5 +1,13 @@
 package Desplegables;
 
+import ManejoArchivos.Archivos;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
 public class Puestos extends javax.swing.JFrame {
 
     /**
@@ -8,6 +16,9 @@ public class Puestos extends javax.swing.JFrame {
     public Puestos() {
         initComponents();
     }
+    
+    public static String Lantigua;
+    boolean modificar = false;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,6 +54,11 @@ public class Puestos extends javax.swing.JFrame {
         idpuestolbl.setText("ID Puestos");
 
         txtID_puesto.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        txtID_puesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtID_puestoActionPerformed(evt);
+            }
+        });
         txtID_puesto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtID_puestoKeyPressed(evt);
@@ -160,12 +176,38 @@ public class Puestos extends javax.swing.JFrame {
         txtID_puesto.setText("");
         btSalir.enable(false);
         txtpuesto.setText("");
+        txtpuesto.setEditable(false);
         btGuardar.enable(false);
         etqEstado.setText("");
     }//GEN-LAST:event_btLimpiarActionPerformed
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
-        
+      if(txtID_puesto.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Se debe rellenar el id antes de guardar");
+        }else if (txtpuesto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Se debe rellenar el nombre del puesto antes de guardar");
+        } else {
+
+            File f = new File("D:\\DB\\Puestos.txt");
+
+            try {
+                if (!f.exists()) {
+                    f.createNewFile();
+                } else {
+                    String Lactual = txtID_puesto.getText() + ";" + txtpuesto.getText();
+                    Archivos AR = new Archivos();
+                    if (modificar) {
+                        AR.ModificarArchivo(Lantigua, Lactual, f);
+                        btLimpiarActionPerformed(evt);
+                    } else {
+                        AR.Guardar(Lactual, f);
+                        btLimpiarActionPerformed(evt);
+                    }
+                }
+            } catch (IOException e) {
+                System.out.println("Error: " + e);
+            }
+        }       
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void txtID_puestoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtID_puestoKeyPressed
@@ -175,6 +217,68 @@ public class Puestos extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_formWindowClosing
+
+    private void txtID_puestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID_puestoActionPerformed
+        try{
+            int id = Integer.parseInt(txtID_puesto.getText());
+            if(id <=0){
+                JOptionPane.showMessageDialog(rootPane, "El Id debe ser un número positivo intente nuevamente");
+                btLimpiarActionPerformed(evt);
+                txtID_puesto.grabFocus();
+            }else{
+                txtpuesto.setEditable(true);
+                btGuardar.setEnabled(true);
+                boolean enct = false;
+                Scanner s;
+                
+                try{
+                    File f = new File("D:\\DB\\Puestos.txt");
+                    
+                    if(!f.exists()){
+                        f.createNewFile();
+                        etqEstado.setText("Creando");
+                    }else{
+                        s = new Scanner(f);
+                        while(s.hasNextLine() && !enct){
+                            String Lactual = s.nextLine();
+                             Scanner s1 = new Scanner(Lactual);
+
+                            s1.useDelimiter("\\s*;\\s*");
+                            
+                            try {
+
+                                if (id == Integer.parseInt(s1.next())) {
+                                    txtpuesto.setText(s1.next());
+                                    modificar = true;
+                                    Lantigua = txtID_puesto.getText() + ";" + txtpuesto.getText();
+                                    etqEstado.setText("Modificando");
+                                    enct = true;
+                                } else {
+                                    txtpuesto.setText("");
+                                    modificar = false;
+                                    etqEstado.setText("Creando");
+                                    enct = false;
+                                }
+
+                            } catch (Exception e) {
+                                JOptionPane.showMessageDialog(this, "Error al leer el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        s.close();
+                        txtpuesto.grabFocus();
+                    }
+                      
+                }catch (FileNotFoundException e) {
+                    JOptionPane.showMessageDialog(this, "No se encontró el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+                }catch (IOException ex) {
+                    System.out.println("Error: " + ex);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "El Id no permite carácteres, intente nuevamente...");
+            btLimpiarActionPerformed(evt);
+        }
+    }//GEN-LAST:event_txtID_puestoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,4 +327,8 @@ public class Puestos extends javax.swing.JFrame {
     private javax.swing.JTextField txtID_puesto;
     private javax.swing.JTextField txtpuesto;
     // End of variables declaration//GEN-END:variables
+
+    private void btnLimpiarActionPerformed(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

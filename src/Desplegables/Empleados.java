@@ -4,6 +4,8 @@ import ManejoArchivos.Archivos;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class Empleados extends javax.swing.JFrame {
@@ -14,7 +16,7 @@ public class Empleados extends javax.swing.JFrame {
     public Empleados() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,11 +45,9 @@ public class Empleados extends javax.swing.JFrame {
         direccionlbl = new javax.swing.JLabel();
         telefonolbl = new javax.swing.JLabel();
         sexolbl = new javax.swing.JLabel();
-        txtiddepart = new javax.swing.JTextField();
         iddepartlbl = new javax.swing.JLabel();
         fechalbl = new javax.swing.JLabel();
         txtfechaingreso = new com.toedter.calendar.JDateChooser();
-        txtidpuesto = new javax.swing.JTextField();
         idpuestolbl = new javax.swing.JLabel();
         sibt = new javax.swing.JRadioButton();
         nobt = new javax.swing.JRadioButton();
@@ -57,6 +57,8 @@ public class Empleados extends javax.swing.JFrame {
         guardarbt = new javax.swing.JButton();
         limpiarbt = new javax.swing.JButton();
         salirbt = new javax.swing.JButton();
+        IDdptCB = new javax.swing.JComboBox<>();
+        IDpCB = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Empleados");
@@ -111,8 +113,6 @@ public class Empleados extends javax.swing.JFrame {
         sexolbl.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         sexolbl.setText("Sexo");
 
-        txtiddepart.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-
         iddepartlbl.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         iddepartlbl.setText("ID Departamento");
 
@@ -122,14 +122,17 @@ public class Empleados extends javax.swing.JFrame {
         txtfechaingreso.setDateFormatString("d-MM-y");
         txtfechaingreso.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
 
-        txtidpuesto.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-
         idpuestolbl.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         idpuestolbl.setText("ID Puesto");
 
         buttonGroup2.add(sibt);
         sibt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         sibt.setText("Si");
+        sibt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sibtActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(nobt);
         nobt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
@@ -208,33 +211,33 @@ public class Empleados extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(sexolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(hombrebt)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(mujerbt))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(iddepartlbl)
-                                                .addComponent(fechalbl))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txtfechaingreso, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                                .addComponent(txtiddepart)))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(idpuestolbl)
-                                                .addComponent(cooperativalbl))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtidpuesto)
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(sibt)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(nobt)
-                                                    .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(sexolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(hombrebt)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(mujerbt))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(iddepartlbl)
+                                            .addComponent(fechalbl))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtfechaingreso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(IDdptCB, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(idpuestolbl)
+                                            .addComponent(cooperativalbl))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(sibt)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(nobt))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(37, 37, 37)
+                                                .addComponent(IDpCB, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -288,31 +291,32 @@ public class Empleados extends javax.swing.JFrame {
                     .addComponent(sexolbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtiddepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(iddepartlbl))
+                    .addComponent(iddepartlbl)
+                    .addComponent(IDdptCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtfechaingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fechalbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtidpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idpuestolbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sibt)
-                    .addComponent(nobt)
-                    .addComponent(cooperativalbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtsalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(salariolbl))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guardarbt)
-                    .addComponent(limpiarbt)
-                    .addComponent(salirbt))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(idpuestolbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sibt)
+                            .addComponent(nobt)
+                            .addComponent(cooperativalbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtsalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(salariolbl))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(guardarbt)
+                            .addComponent(limpiarbt)
+                            .addComponent(salirbt)))
+                    .addComponent(IDpCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -347,9 +351,7 @@ public class Empleados extends javax.swing.JFrame {
         }else if(mujerbt.isSelected()){
             mujerbt.setSelected(false);
         }
-        txtiddepart.setText("");
         txtfechaingreso.setDate(null);
-        txtidpuesto.setText("");
         if(sibt.isSelected()){
             sibt.setSelected(false);
         }else if(nobt.isSelected()){
@@ -376,7 +378,6 @@ public class Empleados extends javax.swing.JFrame {
             apellidomat=txtapellidomat.getText();
             direc=txtdireccion.getText();
             telefono=txttelefono.getText();
-            iddp=txtiddepart.getText();
             if(hombrebt.isSelected()){
                 sexo="H";
             }else if(mujerbt.isSelected()){
@@ -384,14 +385,13 @@ public class Empleados extends javax.swing.JFrame {
             }
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-y");
             fechain=sdf.format(txtfechaingreso.getDate());
-            idp=txtidpuesto.getText();
             if(sibt.isSelected()){
                 coop="S";
             }else if(nobt.isSelected()){
                 coop="N";
             }
             salario=txtsalario.getText();
-            empleado=id+";"+nombre+";"+apellidopat+";"+apellidomat+";"+direc+";"+telefono+";"+sexo+";"+iddp+";"+fechain+";"+idp+";"+coop+";"+salario;
+            empleado=id+";"+nombre+";"+apellidopat+";"+apellidomat+";"+direc+";"+telefono+";"+sexo+";"+";"+fechain+";"+";"+coop+";"+salario;
             ar.Guardar(empleado, emp);
         }
         catch(IOException ex){
@@ -400,34 +400,16 @@ public class Empleados extends javax.swing.JFrame {
         limpiarbtActionPerformed(evt);
     }//GEN-LAST:event_guardarbtActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Empleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Empleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Empleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Empleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+    private void sibtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sibtActionPerformed
+        Cooperativa cop = new Cooperativa();
+        String id = txtid.getText();
+        cop.Dato(id);
+        cop.setVisible(true);
+        
+    }//GEN-LAST:event_sibtActionPerformed
+    
+    public void main(String args[]) {
+                
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Empleados().setVisible(true);
@@ -436,6 +418,8 @@ public class Empleados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> IDdptCB;
+    private javax.swing.JComboBox<String> IDpCB;
     private javax.swing.JLabel apellidomatlbl;
     private javax.swing.JLabel apellidopatlbl;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -463,9 +447,7 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JTextField txtapellidopat;
     private javax.swing.JTextField txtdireccion;
     private com.toedter.calendar.JDateChooser txtfechaingreso;
-    private javax.swing.JTextField txtid;
-    private javax.swing.JTextField txtiddepart;
-    private javax.swing.JTextField txtidpuesto;
+    public javax.swing.JTextField txtid;
     private javax.swing.JTextField txtnombre;
     private javax.swing.JTextField txtsalario;
     private javax.swing.JTextField txttelefono;
