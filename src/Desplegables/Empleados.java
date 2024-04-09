@@ -4,7 +4,6 @@ import ManejoArchivos.Archivos;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -26,8 +25,8 @@ public class Empleados extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
+        Grupo1 = new javax.swing.ButtonGroup();
+        Grupo2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         etqEstado = new javax.swing.JLabel();
         idlbl = new javax.swing.JLabel();
@@ -67,6 +66,9 @@ public class Empleados extends javax.swing.JFrame {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
         });
 
         etqEstado.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
@@ -96,11 +98,11 @@ public class Empleados extends javax.swing.JFrame {
 
         txttelefono.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
 
-        buttonGroup1.add(hombrebt);
+        Grupo1.add(hombrebt);
         hombrebt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         hombrebt.setText("Hombre");
 
-        buttonGroup1.add(mujerbt);
+        Grupo1.add(mujerbt);
         mujerbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         mujerbt.setText("Mujer");
 
@@ -125,7 +127,7 @@ public class Empleados extends javax.swing.JFrame {
         idpuestolbl.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         idpuestolbl.setText("ID Puesto");
 
-        buttonGroup2.add(sibt);
+        Grupo2.add(sibt);
         sibt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         sibt.setText("Si");
         sibt.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +136,7 @@ public class Empleados extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup2.add(nobt);
+        Grupo2.add(nobt);
         nobt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         nobt.setText("No");
 
@@ -224,7 +226,7 @@ public class Empleados extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtfechaingreso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(IDdptCB, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(IDdptCB, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(idpuestolbl)
@@ -237,7 +239,7 @@ public class Empleados extends javax.swing.JFrame {
                                                 .addComponent(nobt))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(37, 37, 37)
-                                                .addComponent(IDpCB, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(IDpCB, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -346,11 +348,8 @@ public class Empleados extends javax.swing.JFrame {
         txtapellidomat.setText("");
         txtdireccion.setText("");
         txttelefono.setText("");
-        if(hombrebt.isSelected()){
-            hombrebt.setSelected(false);
-        }else if(mujerbt.isSelected()){
-            mujerbt.setSelected(false);
-        }
+        Grupo1.clearSelection();
+        Grupo2.clearSelection();
         txtfechaingreso.setDate(null);
         if(sibt.isSelected()){
             sibt.setSelected(false);
@@ -358,6 +357,8 @@ public class Empleados extends javax.swing.JFrame {
             nobt.setSelected(false);
         }
         txtsalario.setText("");
+        IDdptCB.setSelectedIndex(0);
+        IDpCB.setSelectedIndex(0);
     }//GEN-LAST:event_limpiarbtActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -407,8 +408,66 @@ public class Empleados extends javax.swing.JFrame {
         cop.setVisible(true);
         
     }//GEN-LAST:event_sibtActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        String id, descrip;
+        File f = new File("D:\\DB\\Departamentos.txt");
+        
+        try{
+            if(!f.exists()){
+                JOptionPane.showMessageDialog(null, "ESTE ARCHIVO NO EXISTE");
+            }
+            else{
+                Scanner a = new Scanner(f);
+                while(a.hasNextLine()){
+                    String linea = a.nextLine();
+                    Scanner a1 =new Scanner(linea);
+                    
+                    a1.useDelimiter("\\s*;\\s*");
+                    
+                    id=a1.next();
+                    descrip=a1.next();
+                    
+                    IDdptCB.addItem(id);
+                }
+                a.close();
+            }
+            
+        }
+        catch(IOException ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        
+        String id1, descrip1;
+        File f1 = new File("D:\\DB\\Puestos.txt");
+        
+        try{
+            if(!f1.exists()){
+                JOptionPane.showMessageDialog(null, "ESTE ARCHIVO NO EXISTE");
+            }
+            else{
+                Scanner s = new Scanner(f1);
+                while(s.hasNextLine()){
+                    String linea = s.nextLine();
+                    Scanner s1 =new Scanner(linea);
+                    
+                    s1.useDelimiter("\\s*;\\s*");
+                    
+                    id1=s1.next();
+                    descrip1=s1.next();
+                    
+                    IDpCB.addItem(id1);
+                }
+                s.close();
+            }
+            
+        }
+        catch(IOException ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
     
-    public void main(String args[]) {
+    public static void main(String args[]) {
                 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -418,12 +477,12 @@ public class Empleados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup Grupo1;
+    private javax.swing.ButtonGroup Grupo2;
     private javax.swing.JComboBox<String> IDdptCB;
     private javax.swing.JComboBox<String> IDpCB;
     private javax.swing.JLabel apellidomatlbl;
     private javax.swing.JLabel apellidopatlbl;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel cooperativalbl;
     private javax.swing.JLabel direccionlbl;
     private javax.swing.JLabel etqEstado;

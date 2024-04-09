@@ -61,7 +61,9 @@ public class ConsultaNominaFecha extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(70);
             jTable1.getColumnModel().getColumn(0).setMaxWidth(70);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(25);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(110);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(110);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(110);
         }
 
         consultarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N

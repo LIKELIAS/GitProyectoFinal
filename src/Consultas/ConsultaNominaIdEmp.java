@@ -65,7 +65,12 @@ public class ConsultaNominaIdEmp extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(15);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(25);
+            jTable1.getColumnModel().getColumn(1).setMinWidth(70);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(70);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(70);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(110);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(110);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(110);
         }
 
         consultarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N

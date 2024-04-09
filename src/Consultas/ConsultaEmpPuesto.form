@@ -50,7 +50,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel_ID_Puesto" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="TextIdDepart" min="-2" pref="137" max="-2" attributes="0"/>
+                  <Component id="txtIDdpt" min="-2" pref="137" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="consultarbt" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -74,7 +74,7 @@
                       <Component id="consultarbt" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="salirbt" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel_ID_Puesto" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TextIdDepart" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtIDdpt" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="239" max="-2" attributes="0"/>
@@ -90,7 +90,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="tablempp">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="12" style="0"/>
@@ -189,6 +189,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Consultar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultarbtActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="salirbt">
           <Properties>
@@ -217,7 +220,10 @@
             <Property name="text" type="java.lang.String" value="ID_Puesto"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TextIdDepart">
+        <Component class="javax.swing.JTextField" name="txtIDdpt">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIDdptActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
