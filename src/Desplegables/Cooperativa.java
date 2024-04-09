@@ -41,6 +41,9 @@ public class Cooperativa extends javax.swing.JFrame {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
         });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -52,7 +55,7 @@ public class Cooperativa extends javax.swing.JFrame {
         IDemp.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jLabel2.setText("Porcentaja de Descuento");
+        jLabel2.setText("Porcentaje de Descuento");
 
         txtporcent.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
 
@@ -150,6 +153,10 @@ public class Cooperativa extends javax.swing.JFrame {
     private void salirbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirbtActionPerformed
         this.dispose();
     }//GEN-LAST:event_salirbtActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        txtporcent.grabFocus();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
