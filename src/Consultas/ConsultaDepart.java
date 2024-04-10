@@ -1,8 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Consultas;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,7 +17,9 @@ public class ConsultaDepart extends javax.swing.JFrame {
      */
     public ConsultaDepart() {
         initComponents();
+        Tabla = (DefaultTableModel) tableconsulta.getModel();
     }
+    public DefaultTableModel Tabla;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +35,7 @@ public class ConsultaDepart extends javax.swing.JFrame {
         tableconsulta = new javax.swing.JTable();
         consultarbt = new javax.swing.JButton();
         salirbt = new javax.swing.JButton();
-        txtbuscardepart = new javax.swing.JTextField();
+        txtdepart = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,7 +43,7 @@ public class ConsultaDepart extends javax.swing.JFrame {
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
+                WindowClose(evt);
             }
         });
 
@@ -68,11 +72,18 @@ public class ConsultaDepart extends javax.swing.JFrame {
         tableconsulta.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableconsulta);
         if (tableconsulta.getColumnModel().getColumnCount() > 0) {
-            tableconsulta.getColumnModel().getColumn(0).setPreferredWidth(25);
+            tableconsulta.getColumnModel().getColumn(0).setMinWidth(110);
+            tableconsulta.getColumnModel().getColumn(0).setPreferredWidth(110);
+            tableconsulta.getColumnModel().getColumn(0).setMaxWidth(110);
         }
 
         consultarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         consultarbt.setText("Consultar");
+        consultarbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarbtActionPerformed(evt);
+            }
+        });
 
         salirbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         salirbt.setText("Salir");
@@ -82,7 +93,12 @@ public class ConsultaDepart extends javax.swing.JFrame {
             }
         });
 
-        txtbuscardepart.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        txtdepart.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        txtdepart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdepartActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel1.setText("Consulta de Departamentos");
@@ -96,8 +112,8 @@ public class ConsultaDepart extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(consultarbt)
                 .addGap(50, 50, 50)
-                .addComponent(txtbuscardepart, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(txtdepart, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(salirbt)
                 .addGap(25, 25, 25))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -105,6 +121,9 @@ public class ConsultaDepart extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(139, 139, 139))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {consultarbt, salirbt});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -114,10 +133,12 @@ public class ConsultaDepart extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(consultarbt)
                     .addComponent(salirbt)
-                    .addComponent(txtbuscardepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtdepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {consultarbt, salirbt});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,13 +159,50 @@ public class ConsultaDepart extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_salirbtActionPerformed
 
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+    private void WindowClose(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_WindowClose
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    }//GEN-LAST:event_formWindowClosing
+    }//GEN-LAST:event_WindowClose
 
-    /**
-     * @param args the command line arguments
-     */
+    private void consultarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtActionPerformed
+        String id, descrip, buscar;
+        Tabla.getDataVector().removeAllElements();
+        Tabla.fireTableDataChanged();
+        
+        buscar=txtdepart.getText();
+        File f = new File("D:\\DB\\Departamentos.txt");
+        
+        try{
+            if(!f.exists()){
+                JOptionPane.showMessageDialog(null, "ESTE ARCHIVO NO EXISTE");
+            }
+            else{
+                Scanner a = new Scanner(f);
+                while(a.hasNextLine()){
+                    String linea = a.nextLine();
+                    Scanner a1 =new Scanner(linea);
+                    
+                    a1.useDelimiter("\\s*;\\s*");
+                    
+                    id=a1.next();
+                    descrip=a1.next();
+                    
+                    if(id.contains(buscar) || descrip.contains(buscar)){
+                        Tabla.addRow(new Object[]{id, descrip});
+                    }                                       
+                }
+                a.close();
+            }
+            
+        }
+        catch(IOException ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_consultarbtActionPerformed
+
+    private void txtdepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdepartActionPerformed
+        consultarbtActionPerformed(evt);
+    }//GEN-LAST:event_txtdepartActionPerformed
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -168,6 +226,7 @@ public class ConsultaDepart extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ConsultaDepart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -184,6 +243,6 @@ public class ConsultaDepart extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton salirbt;
     private javax.swing.JTable tableconsulta;
-    private javax.swing.JTextField txtbuscardepart;
+    private javax.swing.JTextField txtdepart;
     // End of variables declaration//GEN-END:variables
 }

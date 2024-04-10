@@ -146,8 +146,9 @@ public class ConsultaEmp extends javax.swing.JFrame {
     }//GEN-LAST:event_WindowClose
 
     private void consultarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtActionPerformed
-        boolean filas = false;
         String idemp, nomemp, apatemp, amatemp, direcemp, telemp, sxemp, iddepart, fechain, idpuest, coop, salario;
+        Tabla.getDataVector().removeAllElements();
+        Tabla.fireTableDataChanged();
         
         File f = new File("D:\\DB\\Empleados.txt");
         

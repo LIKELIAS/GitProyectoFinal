@@ -1,8 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Consultas;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,7 +17,9 @@ public class ConsultaPuestos extends javax.swing.JFrame {
      */
     public ConsultaPuestos() {
         initComponents();
+        Tabla = (DefaultTableModel) tablepuestos.getModel();
     }
+    public DefaultTableModel Tabla;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,6 +39,7 @@ public class ConsultaPuestos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Consulta por Puesto");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -59,10 +64,27 @@ public class ConsultaPuestos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablepuestos.getTableHeader().setResizingAllowed(false);
         tablepuestos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablepuestos);
+        if (tablepuestos.getColumnModel().getColumnCount() > 0) {
+            tablepuestos.getColumnModel().getColumn(0).setMinWidth(110);
+            tablepuestos.getColumnModel().getColumn(0).setPreferredWidth(110);
+            tablepuestos.getColumnModel().getColumn(0).setMaxWidth(110);
+        }
 
         consultarbt.setText("Consultar");
+        consultarbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarbtActionPerformed(evt);
+            }
+        });
+
+        buscarpuest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarpuestActionPerformed(evt);
+            }
+        });
 
         salirbt.setText("Salir");
         salirbt.addActionListener(new java.awt.event.ActionListener() {
@@ -78,11 +100,10 @@ public class ConsultaPuestos extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(consultarbt)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buscarpuest, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
                 .addComponent(salirbt)
@@ -91,6 +112,9 @@ public class ConsultaPuestos extends javax.swing.JFrame {
                 .addGap(175, 175, 175)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +136,7 @@ public class ConsultaPuestos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,6 +154,48 @@ public class ConsultaPuestos extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_formWindowClosing
+
+    private void consultarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtActionPerformed
+        String id, descrip, buscar;
+        Tabla.getDataVector().removeAllElements();
+        Tabla.fireTableDataChanged();
+        
+        buscar=buscarpuest.getText();
+        File f = new File("D:\\DB\\Puestos.txt");
+        
+        try{
+            if(!f.exists()){
+                JOptionPane.showMessageDialog(null, "ESTE ARCHIVO EXISTE");
+            }
+            else{
+                Scanner a = new Scanner(f);
+                while(a.hasNextLine()){
+                    String linea = a.nextLine();
+                    Scanner a1 = new Scanner(linea);
+                    
+                    a1.useDelimiter("\\s*;\\s*");
+                    id=a1.next();
+                    descrip=a1.next();
+                    
+                    if(buscar.isEmpty()){
+                      Tabla.addRow(new Object[]{id, descrip});  
+                    }
+                    else if(id.contains(buscar) || descrip.contains(buscar)){
+                        Tabla.addRow(new Object[]{id, descrip});
+                    }
+                    
+                }
+                a.close();
+            }
+        }
+        catch(IOException ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_consultarbtActionPerformed
+
+    private void buscarpuestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarpuestActionPerformed
+        consultarbtActionPerformed(evt);
+    }//GEN-LAST:event_buscarpuestActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,6 +222,7 @@ public class ConsultaPuestos extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ConsultaPuestos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

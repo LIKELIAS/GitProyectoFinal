@@ -4,6 +4,13 @@
  */
 package Consultas;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Asistente
@@ -15,7 +22,9 @@ public class ConsultaEmpPuesto extends javax.swing.JFrame {
      */
     public ConsultaEmpPuesto() {
         initComponents();
+        Tabla = (DefaultTableModel) tablempp.getModel();
     }
+    public DefaultTableModel Tabla;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,22 +37,23 @@ public class ConsultaEmpPuesto extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablempp = new javax.swing.JTable();
         consultarbt = new javax.swing.JButton();
         salirbt = new javax.swing.JButton();
         jtitulo = new javax.swing.JLabel();
         jLabel_ID_Puesto = new javax.swing.JLabel();
-        TextIdDepart = new javax.swing.JTextField();
+        txtIDdpt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Consulta de Empleados por Puesto");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
 
-        jTable1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablempp.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        tablempp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -59,17 +69,32 @@ public class ConsultaEmpPuesto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(7).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(8).setPreferredWidth(100);
+        tablempp.getTableHeader().setResizingAllowed(false);
+        tablempp.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tablempp);
+        if (tablempp.getColumnModel().getColumnCount() > 0) {
+            tablempp.getColumnModel().getColumn(0).setMinWidth(80);
+            tablempp.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tablempp.getColumnModel().getColumn(0).setMaxWidth(80);
+            tablempp.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tablempp.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tablempp.getColumnModel().getColumn(6).setMinWidth(45);
+            tablempp.getColumnModel().getColumn(6).setPreferredWidth(45);
+            tablempp.getColumnModel().getColumn(6).setMaxWidth(45);
+            tablempp.getColumnModel().getColumn(7).setPreferredWidth(100);
+            tablempp.getColumnModel().getColumn(8).setPreferredWidth(100);
+            tablempp.getColumnModel().getColumn(11).setMinWidth(110);
+            tablempp.getColumnModel().getColumn(11).setPreferredWidth(110);
+            tablempp.getColumnModel().getColumn(11).setMaxWidth(110);
         }
 
         consultarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         consultarbt.setText("Consultar");
+        consultarbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarbtActionPerformed(evt);
+            }
+        });
 
         salirbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         salirbt.setText("Salir");
@@ -85,6 +110,12 @@ public class ConsultaEmpPuesto extends javax.swing.JFrame {
         jLabel_ID_Puesto.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel_ID_Puesto.setText("ID_Puesto");
 
+        txtIDdpt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDdptActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -94,7 +125,7 @@ public class ConsultaEmpPuesto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel_ID_Puesto)
                 .addGap(18, 18, 18)
-                .addComponent(TextIdDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIDdpt, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(consultarbt)
                 .addGap(18, 18, 18)
@@ -115,7 +146,7 @@ public class ConsultaEmpPuesto extends javax.swing.JFrame {
                     .addComponent(consultarbt)
                     .addComponent(salirbt)
                     .addComponent(jLabel_ID_Puesto)
-                    .addComponent(TextIdDepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIDdpt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -145,6 +176,55 @@ public class ConsultaEmpPuesto extends javax.swing.JFrame {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_formWindowClosing
 
+    private void consultarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtActionPerformed
+        String buscar, id, nombre, appat, apmat, direc, telefono, sexo, iddpt, fechain, idp, coop, salario;
+        Tabla.getDataVector().removeAllElements();
+        Tabla.fireTableDataChanged();
+        
+        buscar=txtIDdpt.getText();
+        File f = new File("D:\\DB\\Empleados.txt");
+        
+        try{
+            if(!f.exists()){
+                JOptionPane.showMessageDialog(null, "ESTE ARCHIVO NO EXISTE");
+            }
+            else{
+                Scanner a = new Scanner(f);
+                while(a.hasNextLine()){
+                    String ln = a.nextLine();
+                    Scanner a1 = new Scanner(ln);
+                    
+                    a1.useDelimiter("\\s*;\\s*");
+                    
+                    id=a1.next();
+                    nombre=a1.next();
+                    appat=a1.next();
+                    apmat=a1.next();
+                    direc=a1.next();
+                    telefono=a1.next();
+                    sexo=a1.next();
+                    iddpt=a1.next();
+                    fechain=a1.next();
+                    idp=a1.next();
+                    coop=a1.next();
+                    salario=a1.next();
+                    
+                    if(fechain.contains(buscar)){
+                        Tabla.addRow(new Object[]{id, nombre, appat, apmat, direc, telefono, sexo, iddpt, fechain, idp, coop, "$"+salario});
+                    }
+                }
+                a.close();
+            }
+        }
+        catch(IOException e){
+            
+        }
+    }//GEN-LAST:event_consultarbtActionPerformed
+
+    private void txtIDdptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDdptActionPerformed
+        consultarbtActionPerformed(evt);
+    }//GEN-LAST:event_txtIDdptActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -171,6 +251,7 @@ public class ConsultaEmpPuesto extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ConsultaEmpPuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -181,13 +262,13 @@ public class ConsultaEmpPuesto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TextIdDepart;
     private javax.swing.JButton consultarbt;
     private javax.swing.JLabel jLabel_ID_Puesto;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel jtitulo;
     private javax.swing.JButton salirbt;
+    private javax.swing.JTable tablempp;
+    private javax.swing.JTextField txtIDdpt;
     // End of variables declaration//GEN-END:variables
 }

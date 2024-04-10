@@ -192,6 +192,9 @@
               <Font name="Trebuchet MS" size="14" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtloginActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="passwordlbl">
           <Properties>
@@ -225,6 +228,9 @@
               <Font name="Trebuchet MS" size="14" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtnombreKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtapellidos">
           <Properties>
@@ -232,6 +238,9 @@
               <Font name="Trebuchet MS" size="14" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtapellidosKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="apellidoslbl">
           <Properties>

@@ -2,7 +2,6 @@ package Login;
 
 import ManejoArchivos.Archivos;
 import Desplegables.VentanaInicio;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -37,10 +36,11 @@ public class LoginUsuario extends javax.swing.JFrame {
         iniciodesesion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
+                windowadmin(evt);
             }
         });
 
@@ -82,11 +82,6 @@ public class LoginUsuario extends javax.swing.JFrame {
         txtpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtpasswordActionPerformed(evt);
-            }
-        });
-        txtpassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtpasswordKeyPressed(evt);
             }
         });
         jPanel3.add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 150, -1));
@@ -188,34 +183,25 @@ public class LoginUsuario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_ingresarBtActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void windowadmin(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_windowadmin
         Archivos ar = new Archivos();
         File archivosDBase = new File("D:\\DB");
         if(!archivosDBase.exists()){
             archivosDBase.mkdir();
             
-            String Administrador = "Admin;4321;0;Provisional;Provisional";
+            String Administrador = "Admin;4321;0;Admin;Provisional";
             File uf = new File("D:\\DB\\Usuario.txt");
             ar.Guardar(Administrador, uf);
         }
-    }//GEN-LAST:event_formWindowOpened
+    }//GEN-LAST:event_windowadmin
 
     private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
         txtpassword.grabFocus();
     }//GEN-LAST:event_txtusuarioActionPerformed
 
     private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
-        ingresarBt.grabFocus();
+        ingresarBtActionPerformed(evt);
     }//GEN-LAST:event_txtpasswordActionPerformed
-
-    private void txtpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyPressed
-    
-        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-          //  JOptionPane.showMessageDialog(null, "presionaste enter");
-          //ingresarBtActionPerformed(evt);
-        }
-    
-    }//GEN-LAST:event_txtpasswordKeyPressed
 
     /**
      * @param args the command line arguments
