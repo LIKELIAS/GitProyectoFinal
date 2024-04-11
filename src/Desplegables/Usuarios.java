@@ -290,7 +290,7 @@ public class Usuarios extends javax.swing.JFrame {
                 validar=false;
                 txtapellidos.grabFocus();
             }else if(txtemail.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Los apellidos no deben estar vacios");
+                JOptionPane.showMessageDialog(null, "El Email no deben estar vacios");
                 validar=false;
                 txtemail.grabFocus();
             }

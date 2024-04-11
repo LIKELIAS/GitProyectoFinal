@@ -362,7 +362,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem itmDepart;
     private javax.swing.JMenuItem itmEmpleado;
     private javax.swing.JMenuItem itmPuesto;
-    private javax.swing.JMenuItem itmUsuario;
+    public javax.swing.JMenuItem itmUsuario;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;

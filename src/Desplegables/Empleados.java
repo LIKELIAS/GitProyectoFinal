@@ -405,6 +405,50 @@ public class Empleados extends javax.swing.JFrame {
         Archivos ar = new Archivos();
         File emp = new File("D:\\DB\\Empleados.txt");
         String id, nombre, apellidopat, apellidomat, direc, telefono, sexo = null, iddp, fechain, idp, coop = null, salario, empleado;
+        boolean validar = true;
+        
+        if(txtid.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo de ID no debe estar vacio");
+                validar=false;
+                txtid.grabFocus();
+            }else if(txtnombre.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo de Nombre no debe estar vacio");
+                validar=false;
+                txtnombre.grabFocus();
+            }else if(txtapellidopat.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo de Apellido Paterno no debe estar vacio");
+                validar=false;
+                txtapellidopat.grabFocus();
+            }else if(txtapellidomat.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo de Apellido Materno no debe estar vacio");
+                validar=false;
+                txtapellidomat.grabFocus();
+            }else if(txtdireccion.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo de Direccion no debe estar vacio");
+                validar=false;
+                txtdireccion.grabFocus();
+            }else if(txttelefono.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo de Telefono no debe estar vacio");
+                validar=false;
+                txttelefono.grabFocus();
+            }else if(!hombrebt.isSelected()&& !mujerbt.isSelected()){
+                JOptionPane.showMessageDialog(null, "Seleccione el sexo");
+                validar=false;
+            }else if(txtfechaingreso.getDate()== null){
+                JOptionPane.showMessageDialog(null, "El campo de Fecha de no debe estar vacio");
+                validar=false;
+                txtfechaingreso.grabFocus();
+            }else if(txtsalario.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo de Salario no debe estar vacio");
+                validar=false;
+                txtsalario.grabFocus();
+            }else if(!sibt.isSelected()&& !nobt.isSelected()){
+                JOptionPane.showMessageDialog(null, "Seleccione si esta en cooperativa o no");
+                validar=false;
+                txtsalario.grabFocus();
+            }
+            
+        
         try{
             if(!emp.exists()){
                 emp.createNewFile();
@@ -432,17 +476,21 @@ public class Empleados extends javax.swing.JFrame {
             salario=txtsalario.getText();
             empleado=id+";"+nombre+";"+apellidopat+";"+apellidomat+";"+direc+";"+telefono+";"+sexo+";"+iddp+";"+fechain+";"+idp+";"+coop+";"+salario;
             
-            if(Modificar){
-            ar.ModificarArchivo(Lantigua,empleado, emp);
-            }else{
-            ar.Guardar(empleado, emp);    
+            if(validar){
+                 if(Modificar){
+                    ar.ModificarArchivo(Lantigua,empleado, emp);
+            }   else{
+                    ar.Guardar(empleado, emp);    
+                } 
+            limpiarbtActionPerformed(evt);
             }
+            
            
         }
         catch(IOException ex){
             JOptionPane.showMessageDialog(null, ex);
         }
-        limpiarbtActionPerformed(evt);
+        
     }//GEN-LAST:event_guardarbtActionPerformed
 
     private void sibtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sibtActionPerformed
@@ -600,7 +648,7 @@ public class Empleados extends javax.swing.JFrame {
                                     encontrado = false;
                                 }
                             } catch (Exception e) {
-                                JOptionPane.showMessageDialog(this, "Error al leer el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+                                //JOptionPane.showMessageDialog(this, "Error al leer el archivo", "Error", JOptionPane.ERROR_MESSAGE);
                                 System.out.println(e);
                             }
                         }

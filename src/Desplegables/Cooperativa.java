@@ -223,10 +223,22 @@ public class Cooperativa extends javax.swing.JFrame {
         Archivos ar = new Archivos();
         String id, coopemp;
         id= IDemp.getText();
+        boolean validar = true;
         double slr = Integer.parseInt(dato1);
         double porcentaje = Integer.parseInt(txtporcent.getText());
         
         double balance = slr * (porcentaje/100);
+        
+        if(txtporcent.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El porcentaje no debe estar vacio");
+                validar=false;
+                txtporcent.grabFocus();
+            }else if(porcentaje==0 || porcentaje>5){
+                JOptionPane.showMessageDialog(null, "El el porcentaje debe estar entre 1 a 5");
+                validar=false;
+                txtporcent.grabFocus(); 
+            }
+        
         
         File f = new File("D:\\DB\\Cooperativa.txt");
         try{
@@ -234,17 +246,22 @@ public class Cooperativa extends javax.swing.JFrame {
                 f.createNewFile();
             }
             coopemp=id+";"+porcentaje+";"+balance;
-            if(Modificar){
+            
+            if(validar){
+             if(Modificar){
             ar.ModificarArchivo(Lantigua, coopemp, f);
             }else{
             ar.Guardar(coopemp, f);   
+            }  
+             this.dispose();
             }
+            
             
         }
         catch(IOException e){
             JOptionPane.showMessageDialog(null, e);
         }
-        this.dispose();
+        
     }//GEN-LAST:event_guardarbtActionPerformed
 
         public boolean Buscar() {

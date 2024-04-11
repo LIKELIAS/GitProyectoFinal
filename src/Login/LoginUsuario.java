@@ -150,10 +150,10 @@ public class LoginUsuario extends javax.swing.JFrame {
                     if(Log.equals(txtusuario.getText()) && Pass.equals(txtpassword.getText())){
                      lvl=Integer.parseInt(a1.next());
                      String name = a1.next();
-                     VentanaInicio ve = new VentanaInicio();                        
+                     VentanaInicio ve = new VentanaInicio();
                         if(lvl==1){
                             ve.menProcesos.setEnabled(false);
-                            ve.menMantenimientos.setEnabled(false);                            
+                            ve.itmUsuario.setEnabled(false);
                         }
                         ve.lblLetrero.setText("Bienvenido " + name);
                         ve.setVisible(true);
