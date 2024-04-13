@@ -49,7 +49,7 @@ public class Archivos {
                         Guardar(linea, Narchivo);
                     }
                 }
-
+               
                 br.close();
 
                 BorrarArchivo(Oarchivo);

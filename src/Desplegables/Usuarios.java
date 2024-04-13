@@ -1,7 +1,11 @@
 package Desplegables;
 
 import ManejoArchivos.Archivos;
+import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class Usuarios extends javax.swing.JFrame {
@@ -12,6 +16,10 @@ public class Usuarios extends javax.swing.JFrame {
     public Usuarios() {
         initComponents();
     }
+    public static String Lantigua;
+    public boolean Modificar = false;
+    public int Nivel = 0;
+    public String nivel= "";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +66,11 @@ public class Usuarios extends javax.swing.JFrame {
         loginlbl.setText("Login");
 
         txtlogin.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        txtlogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtloginActionPerformed(evt);
+            }
+        });
 
         passwordlbl.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         passwordlbl.setText("Password");
@@ -73,8 +86,18 @@ public class Usuarios extends javax.swing.JFrame {
         nombrelbl.setText("Nombre");
 
         txtnombre.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtnombreKeyPressed(evt);
+            }
+        });
 
         txtapellidos.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        txtapellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtapellidosKeyPressed(evt);
+            }
+        });
 
         apellidoslbl.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         apellidoslbl.setText("Apellidos");
@@ -248,7 +271,7 @@ public class Usuarios extends javax.swing.JFrame {
         Archivos ar = new Archivos();
         File nwa = new File("D:\\DB\\Usuario.txt");
         boolean validar = true;
-        String usuario, nivel = null, login, pass, nombre, apellido;
+        String usuario, login, pass, nombre, apellido,email;
         //do{
             if(txtlogin.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "El campo de login no debe estar vacio");
@@ -266,27 +289,141 @@ public class Usuarios extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Los apellidos no deben estar vacios");
                 validar=false;
                 txtapellidos.grabFocus();
+            }else if(txtemail.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El Email no deben estar vacios");
+                validar=false;
+                txtemail.grabFocus();
             }
         //}while(validar!=true);
         
         login=txtlogin.getText();
         pass=txtpassword.getText();
         nombre=txtnombre.getText();
-        apellido=txtapellidos.getText();        
+        apellido=txtapellidos.getText();
+        email=txtemail.getText();
         if(adminbt.isSelected()){
             nivel="0";
         }else if(normalbt.isSelected()){
             nivel="1";
         }
-        usuario= login+";"+pass+";"+nivel+";"+nombre+";"+apellido;
-        ar.Guardar(usuario, nwa);
+        usuario= login+";"+pass+";"+nivel+";"+nombre+";"+apellido+";"+email;
+        if(validar){
+          if(Modificar){
+            ar.ModificarArchivo(Lantigua,usuario, nwa);
+            JOptionPane.showMessageDialog(null,"Modificado exitosamente");
+            limpiarbtActionPerformed(evt);
+            }else{
+            ar.Guardar(usuario, nwa);
+            JOptionPane.showMessageDialog(null,"Guardado exitosamente");
+            limpiarbtActionPerformed(evt);
+            }  
+        }
         
-        limpiarbtActionPerformed(evt);
+        
+        
     }//GEN-LAST:event_guardarbtActionPerformed
 
     private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
+     String login_u = txtlogin.getText();
+        String pass_u = txtpassword.getText();
+        boolean encontrado = false;
+       /* txtnombre.setEditable(true);
+        txtapellidos.setEditable(true);
+        txtemail.setEditable(true);
+        guardarbt.setEnabled(true);*/
+        Scanner s;
+        
+        try {
+            File f = new File("D:\\DB\\Usuario.txt");
+            
+            if(!f.exists()){
+                f.createNewFile();
+                etqEstado.setText("Creando");
+            } else {
+                s = new Scanner(f);
+                while(s.hasNextLine() && !encontrado){
+                    String lineaActual = s.nextLine();
+                    Scanner s1 = new Scanner(lineaActual);
+                    
+                    s1.useDelimiter("\\s*;\\s*");
+                    
+                    try {
+                        String auxlogin = s1.next();
+                        String auxPass = s1.next();
+                        if(login_u.equals(auxlogin) && pass_u.equals(auxPass)){
+                            
+                           
+                          
+                            Nivel = Integer.parseInt(s1.next());
+                            if (Nivel == 0) {
+                                adminbt.setSelected(true);
+                            } else {
+                                normalbt.setSelected(true);
+                            }
+                            
+                            txtnombre.setText(s1.next());
+                            txtapellidos.setText(s1.next());
+                            txtemail.setText(s1.next());
+                         
+  
+                            Lantigua = login_u+";"+pass_u+";"+Nivel+";"+txtnombre.getText()+";"+txtapellidos.getText()+";"+txtemail.getText();
+                            Modificar = true;
+                            etqEstado.setText("Modificando");
+                            encontrado = true;
+                        } else {
+                            if(login_u.equals(auxlogin)){
+                                limpiarbtActionPerformed(evt);
+                                txtlogin.setText(login_u);
+                                JOptionPane.showMessageDialog(rootPane,"Contraseña incorrecta intente nuevamente");
+                                return;
+                            }
+                            
+                            txtnombre.setText("");
+                            txtapellidos.setText("");
+                            txtemail.setText("");
+                            buttonGroup1.clearSelection();
+                            Modificar = false;
+                            etqEstado.setText("Creando");
+                            encontrado = false;
+                            
+                        }
+                        
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "Error al leer el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                txtnombre.grabFocus();
+                s.close();
+            }
+            
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "No se encontró el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            System.out.println("Error: "+ex);
+        }
         
     }//GEN-LAST:event_txtpasswordActionPerformed
+
+    private void txtloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtloginActionPerformed
+        if(txtlogin.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Debe ingresar el Usuario para continuar");
+        } else {
+            txtpassword.setText("");
+            txtpassword.grabFocus();
+        }
+    }//GEN-LAST:event_txtloginActionPerformed
+
+    private void txtnombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyPressed
+    if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+        txtapellidos.grabFocus();
+    }
+    }//GEN-LAST:event_txtnombreKeyPressed
+
+    private void txtapellidosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidosKeyPressed
+     if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+        txtemail.grabFocus();
+    }
+    }//GEN-LAST:event_txtapellidosKeyPressed
 
     /**
      * @param args the command line arguments

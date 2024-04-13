@@ -8,6 +8,7 @@ import Consultas.ConsultaEmpPuesto;
 import Consultas.ConsultaNominaFecha;
 import Consultas.ConsultaNominaIdEmp;
 import Consultas.ConsultaPuestos;
+import Consultas.ConsultaUsuario;
 import Login.LoginUsuario;
 import Procesos.GenerarNomina;
 import Procesos.ReversarNomina;
@@ -46,6 +47,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         generarnomina = new javax.swing.JMenuItem();
         reversarnomina = new javax.swing.JMenuItem();
         consulta = new javax.swing.JMenu();
+        itmUsuarioCon = new javax.swing.JMenuItem();
         Departamentos = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         Empleados = new javax.swing.JMenuItem();
@@ -82,11 +84,13 @@ public class VentanaInicio extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(101, 101, 101)
                 .addComponent(lblLetrero, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         menMantenimientos.setText("Mantenimientos");
+        menMantenimientos.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
 
+        itmUsuario.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         itmUsuario.setText("Usuarios");
         itmUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +99,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         menMantenimientos.add(itmUsuario);
 
+        itmDepart.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         itmDepart.setText("Departamentos");
         itmDepart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +108,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         menMantenimientos.add(itmDepart);
 
+        itmPuesto.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         itmPuesto.setText("Puestos");
         itmPuesto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +117,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         menMantenimientos.add(itmPuesto);
 
+        itmEmpleado.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         itmEmpleado.setText("Empleados");
         itmEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +129,9 @@ public class VentanaInicio extends javax.swing.JFrame {
         jMenuBar1.add(menMantenimientos);
 
         menProcesos.setText("Procesos");
+        menProcesos.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
 
+        generarnomina.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         generarnomina.setText("Generar Nómina");
         generarnomina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +140,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         menProcesos.add(generarnomina);
 
+        reversarnomina.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         reversarnomina.setText("Reversar Nómina");
         reversarnomina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,12 +152,23 @@ public class VentanaInicio extends javax.swing.JFrame {
         jMenuBar1.add(menProcesos);
 
         consulta.setText("Consultas");
+        consulta.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         consulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 consultaActionPerformed(evt);
             }
         });
 
+        itmUsuarioCon.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        itmUsuarioCon.setText("Usuarios");
+        itmUsuarioCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmUsuarioConActionPerformed(evt);
+            }
+        });
+        consulta.add(itmUsuarioCon);
+
+        Departamentos.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         Departamentos.setText("Departamentos");
         Departamentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +177,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         consulta.add(Departamentos);
 
+        jMenuItem1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jMenuItem1.setText("Puestos");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,6 +186,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         consulta.add(jMenuItem1);
 
+        Empleados.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         Empleados.setText("Empleados");
         Empleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,6 +195,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         consulta.add(Empleados);
 
+        EmpDepart.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         EmpDepart.setText("Empleados por Departamento");
         EmpDepart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,6 +204,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         consulta.add(EmpDepart);
 
+        EmpPuestos.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         EmpPuestos.setText("Empleados por Puestos");
         EmpPuestos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +213,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         consulta.add(EmpPuestos);
 
+        EmpFecha.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         EmpFecha.setText("Empleados por Fecha de Ingreso");
         EmpFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,6 +222,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         consulta.add(EmpFecha);
 
+        NominaFecha.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         NominaFecha.setText("Nómina por Fecha");
         NominaFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,6 +231,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         consulta.add(NominaFecha);
 
+        NominaIDEmp.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         NominaIDEmp.setText("Nómona por ID_Empleado");
         NominaIDEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,6 +341,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         lg.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
+    private void itmUsuarioConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmUsuarioConActionPerformed
+        ConsultaUsuario cn = new ConsultaUsuario();
+        cn.setVisible(true);
+    }//GEN-LAST:event_itmUsuarioConActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -362,7 +395,8 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem itmDepart;
     private javax.swing.JMenuItem itmEmpleado;
     private javax.swing.JMenuItem itmPuesto;
-    private javax.swing.JMenuItem itmUsuario;
+    public javax.swing.JMenuItem itmUsuario;
+    private javax.swing.JMenuItem itmUsuarioCon;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;

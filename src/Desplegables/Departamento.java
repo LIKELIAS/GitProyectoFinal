@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
-import javax.swing.event.HyperlinkEvent;
 
 public class Departamento extends javax.swing.JFrame {
 
@@ -188,9 +187,11 @@ public class Departamento extends javax.swing.JFrame {
                     Archivos AR = new Archivos();
                     if (modificar) {
                         AR.ModificarArchivo(Lantigua, Lactual, f);
+                        JOptionPane.showMessageDialog(null,"Modificado exitosamente");
                         btLimpiarActionPerformed(evt);
                     } else {
                         AR.Guardar(Lactual, f);
+                        JOptionPane.showMessageDialog(null,"Guardado exitosamente");
                         btLimpiarActionPerformed(evt);
                     }
                 }

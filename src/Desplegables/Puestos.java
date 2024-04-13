@@ -198,10 +198,12 @@ public class Puestos extends javax.swing.JFrame {
                     Archivos AR = new Archivos();
                     if (modificar) {
                         AR.ModificarArchivo(Lantigua, Lactual, f);
+                        JOptionPane.showMessageDialog(null,"Modificado exitosamente");
                         btLimpiarActionPerformed(evt);
                     } else {
                         AR.Guardar(Lactual, f);
-                        btLimpiarActionPerformed(evt);
+                        JOptionPane.showMessageDialog(null,"Guardado exitosamente");
+                        btLimpiarActionPerformed(evt);                        
                     }
                 }
             } catch (IOException e) {

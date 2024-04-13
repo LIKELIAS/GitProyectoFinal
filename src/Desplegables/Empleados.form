@@ -261,9 +261,9 @@
               <Font name="Trebuchet MS" size="12" style="0"/>
             </Property>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-          </AuxValues>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtidActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="nombrelbl">
           <Properties>
@@ -279,6 +279,9 @@
               <Font name="Trebuchet MS" size="12" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtnombreKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtapellidopat">
           <Properties>
@@ -286,6 +289,9 @@
               <Font name="Trebuchet MS" size="12" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtapellidopatKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="apellidomatlbl">
           <Properties>
@@ -301,6 +307,9 @@
               <Font name="Trebuchet MS" size="12" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtapellidomatKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="apellidopatlbl">
           <Properties>
@@ -316,6 +325,9 @@
               <Font name="Trebuchet MS" size="12" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtdireccionKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txttelefono">
           <Properties>
@@ -504,6 +516,9 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IDpCBActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>

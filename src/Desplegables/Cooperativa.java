@@ -2,7 +2,9 @@ package Desplegables;
 
 import ManejoArchivos.Archivos;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class Cooperativa extends javax.swing.JFrame {
@@ -13,6 +15,9 @@ public class Cooperativa extends javax.swing.JFrame {
     public Cooperativa() {
         initComponents();
     }
+    public String Lantigua = "";
+    public boolean Modificar = false;
+    
     private String dato;
     private String dato1;
     
@@ -170,17 +175,70 @@ public class Cooperativa extends javax.swing.JFrame {
     }//GEN-LAST:event_salirbtActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        String id_Emp = IDemp.getText();
+        boolean encontrado = false;
+        Scanner s;
+        try {
+            File f = new File("D:\\DB\\Cooperativa.txt");
+
+            if (!f.exists()) {
+                f.createNewFile();
+            } else {
+                s = new Scanner(f);
+
+                while (s.hasNextLine() && !encontrado) {
+                    String linea = s.nextLine();
+                    Scanner s1 = new Scanner(linea);
+                    s1.useDelimiter("\\s*;\\s*");
+
+                    if (id_Emp.equals(s1.next())) {
+                        txtporcent.setText(s1.next());
+                        txtbalance.setText(s1.next());
+                        Lantigua = IDemp.getText() + ";" + txtporcent.getText() + ";" + txtbalance.getText();
+                        Modificar = true;
+                        encontrado = true;
+                    } else {
+                       
+                        txtporcent.setText("");
+                        txtbalance.setText("");
+                        Modificar = false;
+                        encontrado = false;
+                    }
+
+                }
+                s.close();
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("No se encontró el archivo");
+        } catch (IOException ex) {
+            System.out.println("Error al abrir el archivo");
+        }
+        
         txtporcent.grabFocus();
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void guardarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarbtActionPerformed
         Archivos ar = new Archivos();
         String id, coopemp;
         id= IDemp.getText();
+        boolean validar = true;
         double slr = Integer.parseInt(dato1);
         double porcentaje = Integer.parseInt(txtporcent.getText());
         
         double balance = slr * (porcentaje/100);
+        
+        if(txtporcent.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El porcentaje no debe estar vacio");
+                validar=false;
+                txtporcent.grabFocus();
+            }else if(porcentaje==0 || porcentaje>5){
+                JOptionPane.showMessageDialog(null, "El el porcentaje debe estar entre 1 a 5");
+                validar=false;
+                txtporcent.grabFocus(); 
+            }
+        
         
         File f = new File("D:\\DB\\Cooperativa.txt");
         try{
@@ -188,14 +246,66 @@ public class Cooperativa extends javax.swing.JFrame {
                 f.createNewFile();
             }
             coopemp=id+";"+porcentaje+";"+balance;
-            ar.Guardar(coopemp, f);
+            
+            if(validar){
+             if(Modificar){
+            ar.ModificarArchivo(Lantigua, coopemp, f);
+            }else{
+            ar.Guardar(coopemp, f);   
+            }  
+             this.dispose();
+            }
+            
+            
         }
         catch(IOException e){
             JOptionPane.showMessageDialog(null, e);
         }
-        this.dispose();
+        
     }//GEN-LAST:event_guardarbtActionPerformed
 
+        public boolean Buscar() {
+        String id_Emp = IDemp.getText();
+        boolean encontrado = false;
+        Scanner s;
+        try {
+            File f = new File("D:\\DB\\Cooperativa.txt");
+
+            if (!f.exists()) {
+                f.createNewFile();
+            } else {
+                s = new Scanner(f);
+
+                while (s.hasNextLine() && !encontrado) {
+                    String linea = s.nextLine();
+                    Scanner s1 = new Scanner(linea);
+                    s1.useDelimiter("\\s*;\\s*");
+
+                    if (id_Emp.equals(s1.next())) {
+                        txtporcent.setText(s1.next());
+                        txtbalance.setText(s1.next());
+                        Lantigua = IDemp.getText() + ";" + txtporcent.getText() + ";" + txtbalance.getText();
+                        Modificar = true;
+                        encontrado = true;
+                    } else {
+                        txtporcent.setText("");
+                        txtbalance.setText("");
+                        Modificar = false;
+                        encontrado = false;
+                    }
+
+                }
+                s.close();
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("No se encontró el archivo");
+        } catch (IOException ex) {
+            System.out.println("Error al abrir el archivo");
+        }
+        return encontrado;
+    }
+    
     /**
      * @param args the command line arguments
      */

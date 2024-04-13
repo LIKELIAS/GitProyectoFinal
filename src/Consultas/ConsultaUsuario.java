@@ -6,9 +6,9 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class ConsultaDepart extends javax.swing.JFrame {
+public class ConsultaUsuario extends javax.swing.JFrame {
 
-    public ConsultaDepart() {
+    public ConsultaUsuario() {
         initComponents();
         Tabla = (DefaultTableModel) tableconsulta.getModel();
     }
@@ -45,11 +45,11 @@ public class ConsultaDepart extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Descripción"
+                "Nombre", "Apellidos", "Nivel", "Email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -89,25 +89,26 @@ public class ConsultaDepart extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel1.setText("Consulta de Departamentos");
+        jLabel1.setText("Consulta de Usuarios");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(consultarbt)
-                .addGap(50, 50, 50)
+                .addGap(33, 33, 33)
                 .addComponent(txtdepart, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(salirbt)
-                .addGap(25, 25, 25))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(139, 139, 139))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(consultarbt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(salirbt)
+                        .addGap(25, 25, 25))))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {consultarbt, salirbt});
@@ -152,12 +153,14 @@ public class ConsultaDepart extends javax.swing.JFrame {
     }//GEN-LAST:event_WindowClose
 
     private void consultarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtActionPerformed
-        String id, descrip, buscar;
+        String nombre, apellido, nivel, email, buscar;
+        String log, pass;
+        int aux;
         Tabla.getDataVector().removeAllElements();
         Tabla.fireTableDataChanged();
         
         buscar=txtdepart.getText();
-        File f = new File("D:\\DB\\Departamentos.txt");
+        File f = new File("D:\\DB\\Usuario.txt");
         
         try{
             if(!f.exists()){
@@ -171,11 +174,22 @@ public class ConsultaDepart extends javax.swing.JFrame {
                     
                     a1.useDelimiter("\\s*;\\s*");
                     
-                    id=a1.next();
-                    descrip=a1.next();
+                    log=a1.next();
+                    pass=a1.next();
+                    aux=Integer.parseInt(a1.next());
+                    if(aux==0){
+                        nivel = "Administrador";
+                    }
+                    else{
+                        nivel = "Normal";
+                    }
+                    nombre=a1.next();
+                    apellido=a1.next();
                     
-                    if(id.contains(buscar) || descrip.contains(buscar)){
-                        Tabla.addRow(new Object[]{id, descrip});
+                    email=a1.next();
+                    
+                    if(nombre.contains(buscar) || apellido.contains(buscar)){
+                        Tabla.addRow(new Object[]{nombre, apellido, nivel, email});
                     }                                       
                 }
                 a.close();
@@ -192,10 +206,36 @@ public class ConsultaDepart extends javax.swing.JFrame {
     }//GEN-LAST:event_txtdepartActionPerformed
     
     public static void main(String args[]) {
-        
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultaDepart().setVisible(true);
+                new ConsultaUsuario().setVisible(true);
             }
         });
     }
