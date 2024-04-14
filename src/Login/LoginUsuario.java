@@ -148,6 +148,8 @@ public class LoginUsuario extends javax.swing.JFrame {
                             ve.itmUsuario.setEnabled(false);
                         }
                         ve.lblLetrero.setText("Bienvenido " + name);
+                        int validar=lvl;
+                        ve.Dato(validar);
                         ve.setVisible(true);
                         encontrado = true;
                         this.dispose();
