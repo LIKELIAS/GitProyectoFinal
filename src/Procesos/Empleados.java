@@ -1,5 +1,6 @@
-package Desplegables;
+package Procesos;
 
+import Desplegables.*;
 import ManejoArchivos.Archivos;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -62,8 +63,6 @@ public class Empleados extends javax.swing.JFrame {
         salirbt = new javax.swing.JButton();
         IDdptCB = new javax.swing.JComboBox<>();
         IDpCB = new javax.swing.JComboBox<>();
-        etqdpt = new javax.swing.JLabel();
-        etqp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Empleados");
@@ -220,23 +219,11 @@ public class Empleados extends javax.swing.JFrame {
             }
         });
 
-        IDdptCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IDdptCBActionPerformed(evt);
-            }
-        });
-
         IDpCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IDpCBActionPerformed(evt);
             }
         });
-
-        etqdpt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        etqdpt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        etqp.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        etqp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -292,10 +279,7 @@ public class Empleados extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtfechaingreso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(IDdptCB, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(etqdpt, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(IDdptCB, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(idpuestolbl)
@@ -308,9 +292,7 @@ public class Empleados extends javax.swing.JFrame {
                                                 .addComponent(nobt))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(37, 37, 37)
-                                                .addComponent(IDpCB, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(etqp, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(IDpCB, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(guardarbt)
                                         .addGap(49, 49, 49)
@@ -321,7 +303,7 @@ public class Empleados extends javax.swing.JFrame {
                                         .addComponent(salariolbl)
                                         .addGap(18, 18, 18)
                                         .addComponent(txtsalario, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 29, Short.MAX_VALUE)))
+                        .addGap(0, 48, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -361,8 +343,7 @@ public class Empleados extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(iddepartlbl)
-                    .addComponent(IDdptCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etqdpt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(IDdptCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtfechaingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,8 +351,7 @@ public class Empleados extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(idpuestolbl)
-                    .addComponent(IDpCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etqp, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(IDpCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtsalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -719,38 +699,7 @@ public class Empleados extends javax.swing.JFrame {
     }//GEN-LAST:event_txtidActionPerformed
 
     private void IDpCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDpCBActionPerformed
-       File f = new File("D:\\DB\\Puestos.txt");
-       String id, descrip, buscar;
-       
-       buscar=(String) IDpCB.getSelectedItem();
-       
-       try{
-           if(!f.exists()){
-               JOptionPane.showMessageDialog(null, "ESTE ARCHIVO NO EXISTE");
-           }
-           else{
-               Scanner a = new Scanner(f);
-               while(a.hasNextLine()){
-                   String ln = a.nextLine();
-                   Scanner a1 = new Scanner(ln);
-                   
-                   a1.useDelimiter("\\s*;\\s*");
-                   
-                   id=a1.next();
-                   descrip=a1.next();
-                   
-                   if(id.equals(buscar)){
-                       etqp.setText(descrip);
-                   }
-               }
-           }
-       }
-       catch(IOException e){
-           JOptionPane.showMessageDialog(null, e);
-       }
-        
-        
-        txtsalario.grabFocus();
+       txtsalario.grabFocus();
     }//GEN-LAST:event_IDpCBActionPerformed
 
     private void txtnombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyPressed
@@ -786,38 +735,6 @@ public class Empleados extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if(c<'0' || c>'9') evt.consume();
     }//GEN-LAST:event_txtsalarioKeyTyped
-
-    private void IDdptCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDdptCBActionPerformed
-        File f = new File("D:\\DB\\Departamentos.txt");
-        String id, descrip, buscar;
-        
-        buscar=(String) IDdptCB.getSelectedItem();
-        try{
-            if(!f.exists()){
-                JOptionPane.showMessageDialog(null, "EL ARCHIVO NO EXISTE");
-            }
-            else{
-                Scanner a = new Scanner(f);
-                while(a.hasNextLine()){
-                    String ln = a.nextLine();
-                    Scanner a1 = new Scanner(ln);
-                    
-                    a1.useDelimiter("\\s*;\\s*");
-                    
-                    id=a1.next();
-                    descrip=a1.next();
-                    
-                    if(id.equals(buscar)){
-                        etqdpt.setText(descrip);
-                    }
-                }
-                a.close();
-            }
-        }
-        catch(IOException e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }//GEN-LAST:event_IDdptCBActionPerformed
     
     public static void main(String args[]) {
                 
@@ -838,8 +755,6 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JLabel cooperativalbl;
     private javax.swing.JLabel direccionlbl;
     private javax.swing.JLabel etqEstado;
-    private javax.swing.JLabel etqdpt;
-    private javax.swing.JLabel etqp;
     private javax.swing.JLabel fechalbl;
     private javax.swing.JButton guardarbt;
     private javax.swing.JRadioButton hombrebt;
