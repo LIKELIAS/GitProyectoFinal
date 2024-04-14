@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 public class Usuarios extends javax.swing.JFrame {
@@ -20,6 +22,7 @@ public class Usuarios extends javax.swing.JFrame {
     public boolean Modificar = false;
     public int Nivel = 0;
     public String nivel= "";
+    public int v;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,6 +52,7 @@ public class Usuarios extends javax.swing.JFrame {
         guardarbt = new javax.swing.JButton();
         limpiarbt = new javax.swing.JButton();
         salirbt = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Usuarios");
@@ -106,6 +110,11 @@ public class Usuarios extends javax.swing.JFrame {
         emaillbl.setText("Email");
 
         txtemail.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        txtemail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtemailKeyTyped(evt);
+            }
+        });
 
         accesolbl.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         accesolbl.setText("Nivel de Acceso");
@@ -161,13 +170,11 @@ public class Usuarios extends javax.swing.JFrame {
                                     .addComponent(txtnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                                     .addComponent(txtapellidos)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(emaillbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(accesolbl)
-                                    .addComponent(guardarbt))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(guardarbt)
+                                        .addGap(16, 16, 16))
+                                    .addComponent(accesolbl, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -178,7 +185,13 @@ public class Usuarios extends javax.swing.JFrame {
                                         .addGap(20, 20, 20)
                                         .addComponent(limpiarbt)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(salirbt)))))
+                                        .addComponent(salirbt))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(emaillbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtemail, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -222,12 +235,14 @@ public class Usuarios extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emaillbl)
                     .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(accesolbl)
                     .addComponent(normalbt)
                     .addComponent(adminbt))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarbt)
                     .addComponent(limpiarbt)
@@ -261,6 +276,7 @@ public class Usuarios extends javax.swing.JFrame {
         txtapellidos.setText("");
         txtemail.setText("");
         etqEstado.setText("");
+        jLabel1.setText("");
     }//GEN-LAST:event_limpiarbtActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -293,6 +309,10 @@ public class Usuarios extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "El Email no deben estar vacios");
                 validar=false;
                 txtemail.grabFocus();
+            }else if(v==0){
+               validar=false;
+               JOptionPane.showMessageDialog(null, "El email no es valido");
+               txtemail.grabFocus();
             }
         //}while(validar!=true);
         
@@ -310,9 +330,11 @@ public class Usuarios extends javax.swing.JFrame {
         if(validar){
           if(Modificar){
             ar.ModificarArchivo(Lantigua,usuario, nwa);
+            JOptionPane.showMessageDialog(null,"Modificado exitosamente");
             limpiarbtActionPerformed(evt);
             }else{
             ar.Guardar(usuario, nwa);
+            JOptionPane.showMessageDialog(null,"Guardado exitosamente");
             limpiarbtActionPerformed(evt);
             }  
         }
@@ -423,6 +445,24 @@ public class Usuarios extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_txtapellidosKeyPressed
 
+    private void txtemailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtemailKeyTyped
+        String correo = txtemail.getText();
+                String regex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(correo);
+
+                if (matcher.matches()) {
+                    jLabel1.setText("Correo electrónico válido");                    
+                    v=1;
+                } else {
+                    jLabel1.setText("Correo electrónico no válido");                    
+                    v=0;
+                } 
+                if(txtemail.getText().isEmpty()){
+                    jLabel1.setText("");
+                }
+    }//GEN-LAST:event_txtemailKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -466,6 +506,7 @@ public class Usuarios extends javax.swing.JFrame {
     private javax.swing.JLabel emaillbl;
     private javax.swing.JLabel etqEstado;
     private javax.swing.JButton guardarbt;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton limpiarbt;
     private javax.swing.JLabel loginlbl;

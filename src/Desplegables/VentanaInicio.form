@@ -7,6 +7,9 @@
         <Menu class="javax.swing.JMenu" name="menMantenimientos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mantenimientos"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Trebuchet MS" size="12" style="0"/>
+            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -14,6 +17,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itmUsuario">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Usuarios"/>
               </Properties>
               <Events>
@@ -25,6 +31,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itmDepart">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Departamentos"/>
               </Properties>
               <Events>
@@ -33,6 +42,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itmPuesto">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Puestos"/>
               </Properties>
               <Events>
@@ -41,6 +53,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itmEmpleado">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Empleados"/>
               </Properties>
               <Events>
@@ -52,6 +67,9 @@
         <Menu class="javax.swing.JMenu" name="menProcesos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Procesos"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Trebuchet MS" size="12" style="0"/>
+            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -59,6 +77,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="generarnomina">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Generar N&#xf3;mina"/>
               </Properties>
               <Events>
@@ -67,6 +88,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="reversarnomina">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Reversar N&#xf3;mina"/>
               </Properties>
               <Events>
@@ -78,13 +102,30 @@
         <Menu class="javax.swing.JMenu" name="consulta">
           <Properties>
             <Property name="text" type="java.lang.String" value="Consultas"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Trebuchet MS" size="12" style="0"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultaActionPerformed"/>
           </Events>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="itmUsuarioCon">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Usuarios"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itmUsuarioConActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Departamentos">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Departamentos"/>
               </Properties>
               <Events>
@@ -93,6 +134,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Puestos"/>
               </Properties>
               <Events>
@@ -101,6 +145,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Empleados">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Empleados"/>
               </Properties>
               <Events>
@@ -109,6 +156,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="EmpDepart">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Empleados por Departamento"/>
               </Properties>
               <Events>
@@ -117,6 +167,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="EmpPuestos">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Empleados por Puestos"/>
               </Properties>
               <Events>
@@ -125,6 +178,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="EmpFecha">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Empleados por Fecha de Ingreso"/>
               </Properties>
               <Events>
@@ -133,6 +189,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="NominaFecha">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="N&#xf3;mina por Fecha"/>
               </Properties>
               <Events>
@@ -141,6 +200,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="NominaIDEmp">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="N&#xf3;mona por ID_Empleado"/>
               </Properties>
               <Events>
@@ -212,7 +274,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                   <Component id="lblLetrero" min="-2" pref="59" max="-2" attributes="0"/>
-                  <EmptySpace pref="117" max="32767" attributes="0"/>
+                  <EmptySpace pref="118" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
