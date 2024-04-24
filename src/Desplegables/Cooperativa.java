@@ -73,6 +73,11 @@ public class Cooperativa extends javax.swing.JFrame {
         jLabel2.setText("Porcentaje de Descuento");
 
         txtporcent.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        txtporcent.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtporcentKeyTyped(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel3.setText("Balance Acumulado");
@@ -263,6 +268,10 @@ public class Cooperativa extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_guardarbtActionPerformed
+
+    private void txtporcentKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtporcentKeyTyped
+        if(evt.getKeyChar()<'0' || evt.getKeyChar()>'9') evt.consume();
+    }//GEN-LAST:event_txtporcentKeyTyped
 
         public boolean Buscar() {
         String id_Emp = IDemp.getText();

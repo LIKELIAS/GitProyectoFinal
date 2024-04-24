@@ -89,6 +89,11 @@ public class Empleados extends javax.swing.JFrame {
                 txtidActionPerformed(evt);
             }
         });
+        txtid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtidKeyTyped(evt);
+            }
+        });
 
         nombrelbl.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         nombrelbl.setText("Nombre");
@@ -294,8 +299,8 @@ public class Empleados extends javax.swing.JFrame {
                                             .addComponent(txtfechaingreso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(IDdptCB, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(etqdpt, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(etqdpt, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(idpuestolbl)
@@ -309,8 +314,8 @@ public class Empleados extends javax.swing.JFrame {
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(37, 37, 37)
                                                 .addComponent(IDpCB, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(etqp, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(etqp, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(guardarbt)
                                         .addGap(49, 49, 49)
@@ -321,7 +326,7 @@ public class Empleados extends javax.swing.JFrame {
                                         .addComponent(salariolbl)
                                         .addGap(18, 18, 18)
                                         .addComponent(txtsalario, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 29, Short.MAX_VALUE)))
+                        .addGap(0, 10, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -359,10 +364,11 @@ public class Empleados extends javax.swing.JFrame {
                     .addComponent(mujerbt)
                     .addComponent(sexolbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(iddepartlbl)
-                    .addComponent(IDdptCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etqdpt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etqdpt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(iddepartlbl)
+                        .addComponent(IDdptCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtfechaingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -484,15 +490,7 @@ public class Empleados extends javax.swing.JFrame {
             nombre=txtnombre.getText();
             apellidopat=txtapellidopat.getText();
             apellidomat=txtapellidomat.getText();
-            direc=txtdireccion.getText();
-            try{
-                int aux = Integer.parseInt(txttelefono.getText());
-            }
-            catch(Exception e){
-                validar = false;
-                JOptionPane.showMessageDialog(null, "El numero de telefono no debe tener caracteres");
-                txttelefono.grabFocus();
-            }            
+            direc=txtdireccion.getText();               
             telefono=txttelefono.getText();
             
             if(hombrebt.isSelected()){
@@ -508,15 +506,6 @@ public class Empleados extends javax.swing.JFrame {
                 coop="S";
             }else if(nobt.isSelected()){
                 coop="N";
-            }
-            
-            try{
-                int aux1 = Integer.parseInt(txtsalario.getText());
-            }
-            catch(Exception e){
-                validar = false;
-                JOptionPane.showMessageDialog(null, "El salario no debe tener caracteres");
-                txtsalario.grabFocus();
             } 
             salario=txtsalario.getText();
             Lnueva=id+";"+nombre+";"+apellidopat+";"+apellidomat+";"+direc+";"+telefono+";"+sexo+";"+iddp+";"+fechain+";"+idp+";"+coop+";"+salario;
@@ -604,6 +593,7 @@ public class Empleados extends javax.swing.JFrame {
         Calendar cl = Calendar.getInstance();
         Date date = cl.getTime();
         txtfechaingreso.setDate(date);
+        txtid.grabFocus();
     }//GEN-LAST:event_formWindowOpened
 
     private void txtsalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsalarioActionPerformed
@@ -818,9 +808,37 @@ public class Empleados extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_IDdptCBActionPerformed
+
+    private void txtidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidKeyTyped
+        if(evt.getKeyChar()<'0' || evt.getKeyChar()>'9') evt.consume();      
+    }//GEN-LAST:event_txtidKeyTyped
     
     public static void main(String args[]) {
-                
+         /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Empleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Empleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Empleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Empleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Empleados().setVisible(true);
