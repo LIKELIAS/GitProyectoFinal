@@ -13,6 +13,7 @@ import Consultas.ConsultaUsuarioAdm;
 import Login.LoginUsuario;
 import Procesos.GenerarNomina;
 import Procesos.ReversarNomina;
+import javax.swing.JOptionPane;
 
 public class VentanaInicio extends javax.swing.JFrame {
 
@@ -330,9 +331,15 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_reversarnominaActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        LoginUsuario lg = new LoginUsuario();
-        lg.setVisible(true);
+        LoginUsuario lg = new LoginUsuario();      
+        int n = JOptionPane.showConfirmDialog(null, "Desea regresar al login?", "Seleccione", JOptionPane.YES_NO_OPTION);
+        
+        if(n==JOptionPane.YES_OPTION){
+            lg.setVisible(true);
+            this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        }else{
+           this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); 
+        }
     }//GEN-LAST:event_formWindowClosing
 
     private void itmUsuarioConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmUsuarioConActionPerformed

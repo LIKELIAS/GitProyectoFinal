@@ -19,15 +19,10 @@ public class Cooperativa extends javax.swing.JFrame {
     public boolean Modificar = false;
     
     private String dato;
-    private String dato1;
     
     public void Dato(String dato){
         this.dato=dato;
         IDemp.setText(dato);
-    }
-    
-    public void Dato1(String dato1){
-        this.dato1=dato1;
     }
 
     /**
@@ -229,12 +224,17 @@ public class Cooperativa extends javax.swing.JFrame {
         String id, coopemp;
         id= IDemp.getText();
         boolean validar = true;
-        double slr = Integer.parseInt(dato1);
-        double porcentaje = Integer.parseInt(txtporcent.getText());
-        
-        double balance = slr * (porcentaje/100);
+        double balance = 0;
+        double porcentaje = 0;
         
         if(txtporcent.getText().isEmpty()){
+            porcentaje = 0;
+        }else{
+           porcentaje=Double.parseDouble(txtporcent.getText()); 
+        }
+        
+        try{
+            if(txtporcent.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "El porcentaje no debe estar vacio");
                 validar=false;
                 txtporcent.grabFocus();
@@ -244,7 +244,16 @@ public class Cooperativa extends javax.swing.JFrame {
                 txtporcent.grabFocus(); 
             }
         
-        
+            if(txtbalance.getText().isEmpty()){
+                balance = 0;
+            }else{
+                balance=Double.parseDouble(txtbalance.getText());
+            }
+        }
+        catch(Exception e){
+            System.out.println("Error, " + e);
+        }
+                
         File f = new File("D:\\DB\\Cooperativa.txt");
         try{
             if(!f.exists()){
@@ -253,15 +262,13 @@ public class Cooperativa extends javax.swing.JFrame {
             coopemp=id+";"+porcentaje+";"+balance;
             
             if(validar){
-             if(Modificar){
-            ar.ModificarArchivo(Lantigua, coopemp, f);
-            }else{
-            ar.Guardar(coopemp, f);   
-            }  
+                if(Modificar){
+                    ar.ModificarArchivo(Lantigua, coopemp, f);
+                }else{
+                    ar.Guardar(coopemp, f);   
+                }  
              this.dispose();
-            }
-            
-            
+            }           
         }
         catch(IOException e){
             JOptionPane.showMessageDialog(null, e);

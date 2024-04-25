@@ -526,10 +526,8 @@ public class Empleados extends javax.swing.JFrame {
     private void sibtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sibtActionPerformed
         Cooperativa cop = new Cooperativa();
         String id = txtid.getText();
-        String salario = txtsalario.getText();
         
         cop.Dato(id);
-        cop.Dato1(salario);
         cop.setVisible(true);
         
     }//GEN-LAST:event_sibtActionPerformed

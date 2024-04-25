@@ -64,7 +64,7 @@ public class Archivos {
         }
     }
     
-    public static void BorrarArchivo(File f){
+    public void BorrarArchivo(File f){
         try{
             if(f.exists()){
                 f.delete();

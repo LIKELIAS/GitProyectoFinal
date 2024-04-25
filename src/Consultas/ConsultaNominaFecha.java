@@ -1,5 +1,11 @@
 package Consultas;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class ConsultaNominaFecha extends javax.swing.JFrame {
 
     /**
@@ -7,8 +13,9 @@ public class ConsultaNominaFecha extends javax.swing.JFrame {
      */
     public ConsultaNominaFecha() {
         initComponents();
+        Tabla = (DefaultTableModel) tablanomf.getModel();
     }
-
+    public DefaultTableModel Tabla;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -20,12 +27,12 @@ public class ConsultaNominaFecha extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablanomf = new javax.swing.JTable();
         consultarbt = new javax.swing.JButton();
         salirbt = new javax.swing.JButton();
         jtitulo = new javax.swing.JLabel();
         jLabel_FechaNomina = new javax.swing.JLabel();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        txtyear = new com.toedter.calendar.JYearChooser();
         mesescb = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,8 +45,8 @@ public class ConsultaNominaFecha extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablanomf.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        tablanomf.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -47,29 +54,41 @@ public class ConsultaNominaFecha extends javax.swing.JFrame {
                 "ID_Nomina", "ID", "Fecha", "Salario Bruto", "AFP", "ARS", "Cooperativa", "ISR", "Sueldo Neto", "Status"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setResizingAllowed(false);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(70);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(70);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(25);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(110);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(110);
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(110);
+        tablanomf.getTableHeader().setResizingAllowed(false);
+        tablanomf.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tablanomf);
+        if (tablanomf.getColumnModel().getColumnCount() > 0) {
+            tablanomf.getColumnModel().getColumn(0).setMinWidth(70);
+            tablanomf.getColumnModel().getColumn(0).setPreferredWidth(70);
+            tablanomf.getColumnModel().getColumn(0).setMaxWidth(70);
+            tablanomf.getColumnModel().getColumn(1).setPreferredWidth(25);
+            tablanomf.getColumnModel().getColumn(2).setMinWidth(110);
+            tablanomf.getColumnModel().getColumn(2).setPreferredWidth(110);
+            tablanomf.getColumnModel().getColumn(2).setMaxWidth(110);
         }
 
         consultarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         consultarbt.setText("Consultar");
+        consultarbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarbtActionPerformed(evt);
+            }
+        });
 
         salirbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         salirbt.setText("Salir");
@@ -98,7 +117,7 @@ public class ConsultaNominaFecha extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(mesescb, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtyear, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(consultarbt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -120,7 +139,7 @@ public class ConsultaNominaFecha extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel_FechaNomina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(mesescb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jYearChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                        .addComponent(txtyear, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(consultarbt)
                         .addComponent(salirbt)))
@@ -152,6 +171,61 @@ public class ConsultaNominaFecha extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_formWindowClosing
+
+    private void consultarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtActionPerformed
+        File f = new File("D:\\DB\\Nominas.txt");
+        Tabla.getDataVector().removeAllElements();
+        Tabla.fireTableDataChanged();
+        
+        String idnom, idemp, fecha, sldbruto, afp, ars, coop, isr, sdlneto;
+        boolean status;
+        String dia, mes, year;
+        int buscames, buscayear, aux, aux2;
+        
+        buscames = mesescb.getSelectedIndex()+1;
+        buscayear = txtyear.getYear();
+        try{
+            if(!f.exists()){
+                JOptionPane.showMessageDialog(null, "ESTE ARCHIVO NO EXISTE");
+            }
+            else{
+                Scanner a = new Scanner(f);
+                while(a.hasNextLine()){
+                    String ln = a.nextLine();
+                    Scanner a1 = new Scanner(ln);
+                    
+                    a1.useDelimiter("\\s*;\\s*");
+                    
+                    idnom=a1.next();
+                    idemp=a1.next();
+                    
+                    dia=a1.next();
+                    mes=a1.next();
+                    year=a1.next();
+                    fecha=dia+"-"+mes+"-"+year;
+                    
+                    sldbruto=a1.next();
+                    afp=a1.next();
+                    ars=a1.next();
+                    coop=a1.next();
+                    isr=a1.next();
+                    sdlneto=a1.next();
+                    status=Boolean.parseBoolean(a1.next());
+                    
+                    aux=Integer.parseInt(mes);
+                    aux2=Integer.parseInt(year);
+                    
+                    if(aux==buscames && aux2==buscayear){
+                        Tabla.addRow(new Object[]{idnom, idemp, fecha, sldbruto, afp, ars, coop, isr, sdlneto, status});
+                    }           
+                }
+                a.close();
+            }
+        }
+        catch(IOException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_consultarbtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,10 +268,10 @@ public class ConsultaNominaFecha extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_FechaNomina;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private com.toedter.calendar.JYearChooser jYearChooser1;
     private javax.swing.JLabel jtitulo;
     private javax.swing.JComboBox<String> mesescb;
     private javax.swing.JButton salirbt;
+    private javax.swing.JTable tablanomf;
+    private com.toedter.calendar.JYearChooser txtyear;
     // End of variables declaration//GEN-END:variables
 }
