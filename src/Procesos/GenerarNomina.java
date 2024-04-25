@@ -191,14 +191,14 @@ public class GenerarNomina extends javax.swing.JFrame {
         
             Año = txtyear.getYear();
 
-            if (ProcN.BuscarFechaNómina(mesesCB.getSelectedIndex(), Año)) {
+            if (ProcN.BuscarFechaNómina((mesesCB.getSelectedIndex()+1), Año)) {
                 JOptionPane.showMessageDialog(rootPane, "Error la Fecha Ingresada ya está guardada en otra nómina, cambie el mes o el año");
                 mesesCB.grabFocus();
                 return;
             }
 
             try {
-                PdfWriter wr = new PdfWriter("D:\\DB\\Nómina - " + mesesCB.getSelectedItem() + " " + Año + ".pdf");
+                PdfWriter wr = new PdfWriter("D:\\PDF\\Nomina - " + mesesCB.getSelectedItem() + " " + Año + ".pdf");
                 PdfDocument pdf = new PdfDocument(wr);
                 Document documento = new Document(pdf);
                 documento.setMargins(40, 50, 75, 50);

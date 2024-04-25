@@ -178,7 +178,7 @@ public class ReversarNomina extends javax.swing.JFrame {
         Año= txtyear.getYear();
 
             if (ProcN.BuscarFechaNómina((mesesCB.getSelectedIndex()+1), Año)) {
-                jTextID_nomina.setText(ProcN.BuscarIDNómina(mesesCB.getSelectedIndex(), Año));
+                jTextID_nomina.setText(ProcN.BuscarIDNómina((mesesCB.getSelectedIndex()+1), Año));
                 generarbt.setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Error, no se encontró ninguna nómina con la fecha ingresada");
@@ -209,7 +209,7 @@ public class ReversarNomina extends javax.swing.JFrame {
     private void generarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarbtActionPerformed
       ModificarNómina();
 
-        File archPDF = new File("C:\\Volantes de Cobro\\Nómina - " + mesesCB.getSelectedItem() + " " + Año + ".pdf");
+        File archPDF = new File("D:\\PDF\\Nomina - " + mesesCB.getSelectedItem() + " " + Año + ".pdf");
         if (archPDF.exists()) {
             archPDF.delete();
         }
@@ -239,8 +239,8 @@ public class ReversarNomina extends javax.swing.JFrame {
                 s = new Scanner(Nomina);
 
                 while (s.hasNextLine()) {
-                    String línea = s.nextLine();
-                    Scanner s1 = new Scanner(línea);
+                    String linea = s.nextLine();
+                    Scanner s1 = new Scanner(linea);
                     s1.useDelimiter("\\s*;\\s*");
 
                     ArrayList<String> DatosNómina = new ArrayList<>();
@@ -252,7 +252,7 @@ public class ReversarNomina extends javax.swing.JFrame {
                     if (DatosNómina.get(0).equals(jTextID_nomina.getText())) {
                         ActualizarCoop(DatosNómina);
                     } else {
-                        AR.Guardar(línea, Aux);
+                        AR.Guardar(linea, Aux);
                     }
 
                 }
@@ -285,7 +285,7 @@ public class ReversarNomina extends javax.swing.JFrame {
 
             try {
 
-                File Coop = new File("C:\\Base de Datos\\Cooperativas.txt");
+                File Coop = new File("D:\\DB\\Cooperativa.txt");
                 if (!Coop.exists()) {
                     Coop.createNewFile();
                     System.out.println("Error, El archivo de Cooperativas no existe");
