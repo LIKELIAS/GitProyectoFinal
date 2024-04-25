@@ -115,8 +115,8 @@
                                               <Component id="txtfechaingreso" min="-2" pref="150" max="-2" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="IDdptCB" min="-2" pref="118" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="etqdpt" min="-2" pref="94" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="etqdpt" min="-2" pref="119" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -135,8 +135,8 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                                   <Component id="IDpCB" min="-2" pref="117" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="etqp" min="-2" pref="95" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="etqp" min="-2" pref="120" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -155,7 +155,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="29" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -204,10 +204,12 @@
                       <Component id="sexolbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="iddepartlbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="IDdptCB" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="etqdpt" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="etqdpt" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="iddepartlbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="IDdptCB" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -271,6 +273,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtidActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtidKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="nombrelbl">

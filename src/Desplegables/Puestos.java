@@ -63,6 +63,9 @@ public class Puestos extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtID_puestoKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtID_puestoKeyTyped(evt);
+            }
         });
 
         txtpuesto.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
@@ -281,6 +284,10 @@ public class Puestos extends javax.swing.JFrame {
             btLimpiarActionPerformed(evt);
         }
     }//GEN-LAST:event_txtID_puestoActionPerformed
+
+    private void txtID_puestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtID_puestoKeyTyped
+        if(evt.getKeyChar()<'0' || evt.getKeyChar()>'9') evt.consume();
+    }//GEN-LAST:event_txtID_puestoKeyTyped
 
     /**
      * @param args the command line arguments

@@ -53,6 +53,9 @@ public class Departamento extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtID_departKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtID_departKeyTyped(evt);
+            }
         });
 
         txtDepart.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
@@ -271,7 +274,36 @@ public class Departamento extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtID_departActionPerformed
 
+    private void txtID_departKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtID_departKeyTyped
+        if(evt.getKeyChar()<'0' || evt.getKeyChar()>'9') evt.consume();
+    }//GEN-LAST:event_txtID_departKeyTyped
+
     public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Departamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Departamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Departamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Departamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

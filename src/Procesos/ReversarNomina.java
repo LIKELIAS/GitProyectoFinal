@@ -1,5 +1,13 @@
 package Procesos;
 
+import ManejoArchivos.Archivos;
+import ManejoArchivos.ProcesoNomina;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
 public class ReversarNomina extends javax.swing.JFrame {
 
     /**
@@ -8,6 +16,7 @@ public class ReversarNomina extends javax.swing.JFrame {
     public ReversarNomina() {
         initComponents();
     }
+    public int Año;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -20,12 +29,14 @@ public class ReversarNomina extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Establecerbt = new javax.swing.JButton();
         txtdia = new javax.swing.JTextField();
         txtyear = new com.toedter.calendar.JYearChooser();
         mesesCB = new javax.swing.JComboBox<>();
         salirbt = new javax.swing.JButton();
         generarbt = new javax.swing.JButton();
+        jlabelId_nomina = new javax.swing.JLabel();
+        jTextID_nomina = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reversar Nómina");
@@ -34,6 +45,9 @@ public class ReversarNomina extends javax.swing.JFrame {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
         });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -41,11 +55,11 @@ public class ReversarNomina extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel1.setText("Fecha de Nómina:");
 
-        jButton1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jButton1.setText("Establecer");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Establecerbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        Establecerbt.setText("Establecer");
+        Establecerbt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                EstablecerbtActionPerformed(evt);
             }
         });
 
@@ -66,6 +80,16 @@ public class ReversarNomina extends javax.swing.JFrame {
         generarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         generarbt.setText("Reversar");
         generarbt.setEnabled(false);
+        generarbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarbtActionPerformed(evt);
+            }
+        });
+
+        jlabelId_nomina.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jlabelId_nomina.setText("ID de Nomina");
+
+        jTextID_nomina.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,8 +114,14 @@ public class ReversarNomina extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtyear, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1)))
+                                .addComponent(Establecerbt)))
                         .addGap(35, 35, 35))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlabelId_nomina)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextID_nomina, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {generarbt, salirbt});
@@ -99,17 +129,21 @@ public class ReversarNomina extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlabelId_nomina)
+                    .addComponent(jTextID_nomina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(Establecerbt, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtdia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(mesesCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(generarbt, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(salirbt))
@@ -133,14 +167,27 @@ public class ReversarNomina extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void EstablecerbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstablecerbtActionPerformed
         if(mesesCB.getSelectedItem().equals("Febrero")){
             txtdia.setText("28");
         }else{
             txtdia.setText("30");
         }
-        generarbt.setEnabled(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        ProcesoNomina ProcN = new ProcesoNomina();
+
+        Año= txtyear.getYear();
+
+            if (ProcN.BuscarFechaNómina((mesesCB.getSelectedIndex()+1), Año)) {
+                jTextID_nomina.setText(ProcN.BuscarIDNómina(mesesCB.getSelectedIndex(), Año));
+                generarbt.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Error, no se encontró ninguna nómina con la fecha ingresada");
+                jTextID_nomina.setText("");
+                generarbt.setEnabled(false);
+            }
+
+        
+    }//GEN-LAST:event_EstablecerbtActionPerformed
 
     private void salirbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirbtActionPerformed
         this.dispose();
@@ -150,6 +197,108 @@ public class ReversarNomina extends javax.swing.JFrame {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_formWindowClosing
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+ File f = new File("D:\\DB\\Nominas.txt");
+
+        if (!f.exists()) {
+            JOptionPane.showMessageDialog(rootPane, "No existe ningún nómina para reversar", "Error", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+        }        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void generarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarbtActionPerformed
+      ModificarNómina();
+
+        File archPDF = new File("C:\\Volantes de Cobro\\Nómina - " + mesesCB.getSelectedItem() + " " + Año + ".pdf");
+        if (archPDF.exists()) {
+            archPDF.delete();
+        }
+
+        JOptionPane.showMessageDialog(rootPane, "La nómina se ha reversado correctamente");
+        jTextID_nomina.setText("");
+
+        generarbt.setEnabled(false);
+        
+    }//GEN-LAST:event_generarbtActionPerformed
+   public void ModificarNómina() {
+        File Nomina = new File("D:\\DB\\Nominas.txt");
+        File Aux = new File("D:\\DB\\NominasAux.txt");
+
+        try {
+            if (!Aux.exists()) {
+                Aux.createNewFile();
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        Scanner s;
+        Archivos AR = new Archivos();
+
+        try {
+            if (Nomina.exists()) {
+                s = new Scanner(Nomina);
+
+                while (s.hasNextLine()) {
+                    String línea = s.nextLine();
+                    Scanner s1 = new Scanner(línea);
+                    s1.useDelimiter("\\s*;\\s*");
+
+                    ArrayList<String> DatosNómina = new ArrayList<>();
+
+                    while (s1.hasNext()) {
+                        DatosNómina.add(s1.next());
+                    }
+
+                    if (DatosNómina.get(0).equals(jTextID_nomina.getText())) {
+                        ActualizarCoop(DatosNómina);
+                    } else {
+                        AR.Guardar(línea, Aux);
+                    }
+
+                }
+
+                s.close();
+
+                AR.BorrarArchivo(Nomina);
+                Aux.renameTo(Nomina);
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "El archivo de Nómina no existe");
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
+    }
+
+    public void ActualizarCoop(ArrayList<String> DatosNómina) {
+        ProcesoNomina ProcN = new ProcesoNomina();
+        Archivos AR = new Archivos();
+        ArrayList<String> DatosCoop = ProcN.BuscarDatosCoop(DatosNómina.get(1));
+
+        if (DatosCoop != null) {
+            String LineaAntigua = DatosCoop.get(0) + ";" + DatosCoop.get(1) + ";" + DatosCoop.get(2);
+            double Balance_Acum = Double.parseDouble(DatosCoop.get(2));
+            double Valor_Coop = Double.parseDouble(DatosNómina.get(7));
+            Balance_Acum -= Valor_Coop;
+            String LineaActual = DatosCoop.get(0) + ";" + DatosCoop.get(1) + ";" + Balance_Acum;
+
+            try {
+
+                File Coop = new File("C:\\Base de Datos\\Cooperativas.txt");
+                if (!Coop.exists()) {
+                    Coop.createNewFile();
+                    System.out.println("Error, El archivo de Cooperativas no existe");
+                } else {
+                    AR.ModificarArchivo(LineaAntigua, LineaActual, Coop);
+                }
+
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -187,10 +336,12 @@ public class ReversarNomina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Establecerbt;
     private javax.swing.JButton generarbt;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextID_nomina;
+    private javax.swing.JLabel jlabelId_nomina;
     private javax.swing.JComboBox<String> mesesCB;
     private javax.swing.JButton salirbt;
     private javax.swing.JTextField txtdia;
