@@ -28,6 +28,9 @@ public class Departamento extends javax.swing.JFrame {
         btLimpiar = new javax.swing.JButton();
         btGuardar = new javax.swing.JButton();
         btSalir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Departamentos");
@@ -38,10 +41,12 @@ public class Departamento extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(142, 205, 221));
+        jPanel1.setBackground(new java.awt.Color(168, 205, 159));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         etqID_depart.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         etqID_depart.setText("ID Departamento");
+        jPanel1.add(etqID_depart, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 23, -1, -1));
 
         txtID_depart.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         txtID_depart.addActionListener(new java.awt.event.ActionListener() {
@@ -57,104 +62,73 @@ public class Departamento extends javax.swing.JFrame {
                 txtID_departKeyTyped(evt);
             }
         });
+        jPanel1.add(txtID_depart, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 127, -1));
 
         txtDepart.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jPanel1.add(txtDepart, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 66, 248, -1));
 
         etqDepart.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         etqDepart.setText("Departamento");
+        jPanel1.add(etqDepart, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 69, -1, -1));
 
         etqEstado.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         etqEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.add(etqEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 113, 28));
 
-        btLimpiar.setBackground(new java.awt.Color(0, 102, 204));
+        btLimpiar.setBackground(new java.awt.Color(168, 205, 159));
         btLimpiar.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btLimpiar.setForeground(new java.awt.Color(255, 255, 255));
-        btLimpiar.setText("Limpiar");
+        btLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/broom.png"))); // NOI18N
         btLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLimpiarActionPerformed(evt);
             }
         });
+        jPanel1.add(btLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 48, -1));
 
-        btGuardar.setBackground(new java.awt.Color(0, 102, 204));
+        btGuardar.setBackground(new java.awt.Color(168, 205, 159));
         btGuardar.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btGuardar.setForeground(new java.awt.Color(255, 255, 255));
-        btGuardar.setText("Guardar");
+        btGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/disk.png"))); // NOI18N
         btGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btGuardarActionPerformed(evt);
             }
         });
+        jPanel1.add(btGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 48, -1));
 
-        btSalir.setBackground(new java.awt.Color(0, 102, 204));
+        btSalir.setBackground(new java.awt.Color(168, 205, 159));
         btSalir.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btSalir.setForeground(new java.awt.Color(255, 255, 255));
-        btSalir.setText("Salir");
+        btSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/leave.png"))); // NOI18N
         btSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalirActionPerformed(evt);
             }
         });
+        jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 48, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(91, 91, 91)
-                        .addComponent(btLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(96, 96, 96)
-                        .addComponent(btSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(61, 61, 61))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etqDepart)
-                            .addComponent(etqID_depart))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtID_depart, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(etqEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(etqID_depart)
-                        .addComponent(txtID_depart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(etqEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etqDepart)
-                    .addComponent(txtDepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btGuardar)
-                    .addComponent(btLimpiar)
-                    .addComponent(btSalir))
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jLabel1.setText("Guardar");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jLabel2.setText("Limpiar");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jLabel3.setText("Salir");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
         );
 
         pack();
@@ -319,6 +293,9 @@ public class Departamento extends javax.swing.JFrame {
     private javax.swing.JLabel etqDepart;
     private javax.swing.JLabel etqEstado;
     private javax.swing.JLabel etqID_depart;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtDepart;
     private javax.swing.JTextField txtID_depart;

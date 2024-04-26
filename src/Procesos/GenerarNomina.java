@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -66,7 +67,7 @@ public class GenerarNomina extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(168, 205, 159));
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel1.setText("Fecha de Nómina:");
@@ -228,10 +229,12 @@ public class GenerarNomina extends javax.swing.JFrame {
                     documento.add(new Paragraph());
                 }
                 documento.close();
-                JOptionPane.showMessageDialog(rootPane, "Se ha Generado la Nómina Correctamente\nSi deseea ver el volante en PDF dirigáse a la carpeta Volantes de Cobros en el Disco Local (C:)");
+                JOptionPane.showMessageDialog(rootPane, "Se ha Generado la Nómina Correctamente\nSi deseea ver el volante en PDF dirigáse a la carpeta PDF en el Disco Local (D:)");
                 Nómina++;
                 jTextID_nomina.setText(Nómina + "");
-                //txtyear.set
+                Calendar cl = Calendar.getInstance();
+                int date = cl.get(Calendar.YEAR);
+                txtyear.setYear(date);
                 mesesCB.setSelectedIndex(0);
             } catch (IOException e) {
                 System.out.println(e);
@@ -245,7 +248,7 @@ public class GenerarNomina extends javax.swing.JFrame {
         try {
             File archEmp = new File("D:\\DB\\Empleados.txt");
             Scanner s = new Scanner(archEmp);
-
+            
             while (s.hasNextLine()) {
                 String línea = s.nextLine();
                 Scanner s1 = new Scanner(línea);
@@ -262,7 +265,7 @@ public class GenerarNomina extends javax.swing.JFrame {
 
             s.close();
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(rootPane, "No se encontró ningun empleado en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "No se encontró ningun empleado registrado", "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
             return;
         }
@@ -307,7 +310,7 @@ public class GenerarNomina extends javax.swing.JFrame {
      public void ProcesarNómina() {
 
         Valor_AFP = (Salario_Bruto * 2.87) / 100;
-        Valor_ARS = (Salario_Bruto * 3.10) / 100;
+        Valor_ARS = (Salario_Bruto * 3.04) / 100;
         Valor_Coop = (Salario_Bruto * Coop_Porc) / 100;
 
         Coop_Balance_Acum += Valor_Coop;

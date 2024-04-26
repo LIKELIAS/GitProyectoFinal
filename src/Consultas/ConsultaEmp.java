@@ -40,6 +40,9 @@ public class ConsultaEmp extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(168, 205, 159));
+
+        tablaemp.setBackground(new java.awt.Color(168, 205, 159));
         tablaemp.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         tablaemp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

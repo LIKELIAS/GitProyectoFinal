@@ -37,10 +37,10 @@ public class LoginUsuario extends javax.swing.JFrame {
             }
         });
 
-        jPanel3.setBackground(new java.awt.Color(142, 205, 221));
+        jPanel3.setBackground(new java.awt.Color(168, 205, 159));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(34, 102, 141));
+        jPanel1.setBackground(new java.awt.Color(86, 143, 121));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

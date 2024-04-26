@@ -44,6 +44,8 @@ public class ConsultaEmpFecha extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(168, 205, 159));
+
         tablefecha.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         tablefecha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

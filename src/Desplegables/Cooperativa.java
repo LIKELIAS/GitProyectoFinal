@@ -19,15 +19,10 @@ public class Cooperativa extends javax.swing.JFrame {
     public boolean Modificar = false;
     
     private String dato;
-    private String dato1;
     
     public void Dato(String dato){
         this.dato=dato;
         IDemp.setText(dato);
-    }
-    
-    public void Dato1(String dato1){
-        this.dato1=dato1;
     }
 
     /**
@@ -48,6 +43,11 @@ public class Cooperativa extends javax.swing.JFrame {
         txtbalance = new javax.swing.JTextField();
         guardarbt = new javax.swing.JButton();
         salirbt = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cooperativa");
@@ -61,7 +61,7 @@ public class Cooperativa extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(168, 205, 159));
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel1.setText("ID del Empleado");
@@ -85,21 +85,35 @@ public class Cooperativa extends javax.swing.JFrame {
         txtbalance.setEditable(false);
         txtbalance.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
 
+        guardarbt.setBackground(new java.awt.Color(168, 205, 159));
         guardarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        guardarbt.setText("Guardar");
+        guardarbt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/disk.png"))); // NOI18N
         guardarbt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarbtActionPerformed(evt);
             }
         });
 
+        salirbt.setBackground(new java.awt.Color(168, 205, 159));
         salirbt.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        salirbt.setText("Salir");
+        salirbt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/leave.png"))); // NOI18N
         salirbt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirbtActionPerformed(evt);
             }
         });
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/tax-alt.png"))); // NOI18N
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/equality.png"))); // NOI18N
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/clipboard-user.png"))); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jLabel7.setText("Guardar");
+
+        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jLabel8.setText("Salir");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,12 +122,12 @@ public class Cooperativa extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(guardarbt)
-                        .addGap(40, 40, 40)
-                        .addComponent(salirbt))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -126,8 +140,19 @@ public class Cooperativa extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(IDemp, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(51, Short.MAX_VALUE))
+                                .addComponent(IDemp, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(guardarbt, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(82, 82, 82)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(salirbt, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel8)))))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {guardarbt, salirbt});
@@ -136,22 +161,32 @@ public class Cooperativa extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(IDemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(IDemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(txtporcent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtporcent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtbalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(txtbalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarbt)
                     .addComponent(salirbt))
-                .addGap(38, 38, 38))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {guardarbt, salirbt});
@@ -229,12 +264,17 @@ public class Cooperativa extends javax.swing.JFrame {
         String id, coopemp;
         id= IDemp.getText();
         boolean validar = true;
-        double slr = Integer.parseInt(dato1);
-        double porcentaje = Integer.parseInt(txtporcent.getText());
-        
-        double balance = slr * (porcentaje/100);
+        double balance = 0;
+        double porcentaje = 0;
         
         if(txtporcent.getText().isEmpty()){
+            porcentaje = 0;
+        }else{
+           porcentaje=Double.parseDouble(txtporcent.getText()); 
+        }
+        
+        try{
+            if(txtporcent.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "El porcentaje no debe estar vacio");
                 validar=false;
                 txtporcent.grabFocus();
@@ -244,7 +284,16 @@ public class Cooperativa extends javax.swing.JFrame {
                 txtporcent.grabFocus(); 
             }
         
-        
+            if(txtbalance.getText().isEmpty()){
+                balance = 0;
+            }else{
+                balance=Double.parseDouble(txtbalance.getText());
+            }
+        }
+        catch(Exception e){
+            System.out.println("Error, " + e);
+        }
+                
         File f = new File("D:\\DB\\Cooperativa.txt");
         try{
             if(!f.exists()){
@@ -253,15 +302,13 @@ public class Cooperativa extends javax.swing.JFrame {
             coopemp=id+";"+porcentaje+";"+balance;
             
             if(validar){
-             if(Modificar){
-            ar.ModificarArchivo(Lantigua, coopemp, f);
-            }else{
-            ar.Guardar(coopemp, f);   
-            }  
+                if(Modificar){
+                    ar.ModificarArchivo(Lantigua, coopemp, f);
+                }else{
+                    ar.Guardar(coopemp, f);   
+                }  
              this.dispose();
-            }
-            
-            
+            }           
         }
         catch(IOException e){
             JOptionPane.showMessageDialog(null, e);
@@ -356,6 +403,11 @@ public class Cooperativa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton salirbt;
     private javax.swing.JTextField txtbalance;

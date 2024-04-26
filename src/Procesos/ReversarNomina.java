@@ -50,7 +50,7 @@ public class ReversarNomina extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(168, 205, 159));
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel1.setText("Fecha de Nómina:");
@@ -198,7 +198,7 @@ public class ReversarNomina extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
- File f = new File("D:\\DB\\Nominas.txt");
+        File f = new File("D:\\DB\\Nominas.txt");
 
         if (!f.exists()) {
             JOptionPane.showMessageDialog(rootPane, "No existe ningún nómina para reversar", "Error", JOptionPane.ERROR_MESSAGE);

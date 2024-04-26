@@ -1,10 +1,18 @@
 package Consultas;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class ConsultaNominaIdEmp extends javax.swing.JFrame {
 
     public ConsultaNominaIdEmp() {
         initComponents();
+        Tabla = (DefaultTableModel) tablanom.getModel();
     }
+    public DefaultTableModel Tabla;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -12,12 +20,12 @@ public class ConsultaNominaIdEmp extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablanom = new javax.swing.JTable();
         consultarbt = new javax.swing.JButton();
         salirbt = new javax.swing.JButton();
         jtitulo = new javax.swing.JLabel();
         jLabel_FechaNomina = new javax.swing.JLabel();
-        jTextIdEmpleado = new javax.swing.JTextField();
+        txtemp = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consulta Nominal de Empleados");
@@ -27,8 +35,10 @@ public class ConsultaNominaIdEmp extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel1.setBackground(new java.awt.Color(168, 205, 159));
+
+        tablanom.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        tablanom.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -36,29 +46,43 @@ public class ConsultaNominaIdEmp extends javax.swing.JFrame {
                 "ID_Nomina", "ID", "Fecha", "Salario Bruto", "AFP", "ARS", "Cooperativa", "ISR", "Sueldo Neto", "Status"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setResizingAllowed(false);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(15);
-            jTable1.getColumnModel().getColumn(1).setMinWidth(70);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(70);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(110);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(110);
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(110);
+        tablanom.getTableHeader().setResizingAllowed(false);
+        tablanom.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tablanom);
+        if (tablanom.getColumnModel().getColumnCount() > 0) {
+            tablanom.getColumnModel().getColumn(0).setMinWidth(70);
+            tablanom.getColumnModel().getColumn(0).setPreferredWidth(70);
+            tablanom.getColumnModel().getColumn(0).setMaxWidth(70);
+            tablanom.getColumnModel().getColumn(1).setMinWidth(70);
+            tablanom.getColumnModel().getColumn(1).setPreferredWidth(70);
+            tablanom.getColumnModel().getColumn(1).setMaxWidth(70);
+            tablanom.getColumnModel().getColumn(2).setMinWidth(110);
+            tablanom.getColumnModel().getColumn(2).setPreferredWidth(110);
+            tablanom.getColumnModel().getColumn(2).setMaxWidth(110);
         }
 
         consultarbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         consultarbt.setText("Consultar");
+        consultarbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarbtActionPerformed(evt);
+            }
+        });
 
         salirbt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         salirbt.setText("Salir");
@@ -72,7 +96,13 @@ public class ConsultaNominaIdEmp extends javax.swing.JFrame {
         jtitulo.setText("Consulta de Nomina por ID de empleado ");
 
         jLabel_FechaNomina.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jLabel_FechaNomina.setText("Fecha de Nomina");
+        jLabel_FechaNomina.setText("ID de Empleado");
+
+        txtemp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtempActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -80,10 +110,10 @@ public class ConsultaNominaIdEmp extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel_FechaNomina, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel_FechaNomina, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtemp, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(consultarbt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -104,7 +134,7 @@ public class ConsultaNominaIdEmp extends javax.swing.JFrame {
                     .addComponent(jLabel_FechaNomina, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(consultarbt)
                     .addComponent(salirbt)
-                    .addComponent(jTextIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -133,6 +163,61 @@ public class ConsultaNominaIdEmp extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_formWindowClosing
+
+    private void consultarbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtActionPerformed
+        File f = new File("D:\\DB\\Nominas.txt");
+        Tabla.getDataVector().removeAllElements();
+        Tabla.fireTableDataChanged();
+        
+        String buscar, idnom, idemp, fecha, sldbruto, afp, ars, coop, isr, sdlneto;
+        boolean status;
+        String dia, mes, year;
+        
+        buscar = txtemp.getText();
+        try{
+            if(!f.exists()){
+                JOptionPane.showMessageDialog(null, "ESTE ARCHIVO NO EXISTE");
+            }
+            else{
+                Scanner a = new Scanner(f);
+                while(a.hasNextLine()){
+                    String ln = a.nextLine();
+                    Scanner a1 = new Scanner(ln);
+                    
+                    a1.useDelimiter("\\s*;\\s*");
+                    
+                    idnom=a1.next();
+                    idemp=a1.next();
+                    
+                    dia=a1.next();
+                    mes=a1.next();
+                    year=a1.next();
+                    fecha=dia+"-"+mes+"-"+year;
+                    
+                    sldbruto=a1.next();
+                    afp=a1.next();
+                    ars=a1.next();
+                    coop=a1.next();
+                    isr=a1.next();
+                    sdlneto=a1.next();
+                    status=Boolean.parseBoolean(a1.next());
+                    
+                    if(idemp.contains(buscar)){
+                        Tabla.addRow(new Object[]{idnom, idemp, fecha, sldbruto, afp, ars, coop, isr, sdlneto, status});
+                    }
+                    
+                }
+                a.close();
+            }
+        }
+        catch(IOException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_consultarbtActionPerformed
+
+    private void txtempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtempActionPerformed
+        consultarbtActionPerformed(evt);
+    }//GEN-LAST:event_txtempActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -172,9 +257,9 @@ public class ConsultaNominaIdEmp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_FechaNomina;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextIdEmpleado;
     private javax.swing.JLabel jtitulo;
     private javax.swing.JButton salirbt;
+    private javax.swing.JTable tablanom;
+    private javax.swing.JTextField txtemp;
     // End of variables declaration//GEN-END:variables
 }
