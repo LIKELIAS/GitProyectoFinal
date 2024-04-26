@@ -43,6 +43,8 @@ public class ConsultaEmpDepart extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(168, 205, 159));
+
         tablaid.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         tablaid.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,6 +62,8 @@ public class ConsultaEmpDepart extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablaid.setGridColor(new java.awt.Color(168, 205, 159));
+        tablaid.setSelectionBackground(new java.awt.Color(168, 205, 159));
         tablaid.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaid);
         if (tablaid.getColumnModel().getColumnCount() > 0) {

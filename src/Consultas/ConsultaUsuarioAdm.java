@@ -35,7 +35,7 @@ public class ConsultaUsuarioAdm extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(168, 205, 159));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 

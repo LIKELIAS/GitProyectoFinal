@@ -35,6 +35,8 @@ public class ConsultaNominaIdEmp extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(168, 205, 159));
+
         tablanom.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         tablanom.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,7 +96,7 @@ public class ConsultaNominaIdEmp extends javax.swing.JFrame {
         jtitulo.setText("Consulta de Nomina por ID de empleado ");
 
         jLabel_FechaNomina.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jLabel_FechaNomina.setText("Fecha de Nomina");
+        jLabel_FechaNomina.setText("ID de Empleado");
 
         txtemp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,8 +110,8 @@ public class ConsultaNominaIdEmp extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel_FechaNomina, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel_FechaNomina, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtemp, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)

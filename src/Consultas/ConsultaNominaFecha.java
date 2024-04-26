@@ -43,7 +43,7 @@ public class ConsultaNominaFecha extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(168, 205, 159));
 
         tablanomf.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         tablanomf.setModel(new javax.swing.table.DefaultTableModel(
